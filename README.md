@@ -1,1 +1,1 @@
-# Advanced-Quantum-Mechanics-Course-
+# Advanced-Quantum-Mechanics (Course)
