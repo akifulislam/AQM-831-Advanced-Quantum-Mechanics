@@ -1,0 +1,307 @@
+\allowdisplaybreaks
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} September 13, 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 8 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 8}
+\begin{enumerate}
+    \item Show that choosing 
+    \begin{align}
+        a_l = \frac{(2l-1)(2l-3)\cdots(3)(1)}{l!}
+    \end{align}
+    ensures $P_l(1) = 1$.
+    \bigskip\bigskip\hline\hline\bigskip
+    The generating function for, say, a series of functions $f_n(x)$ for $n=0,1,\ldots$ is a function $G(x,t)$ containing, as well as $x$, a dummy variable $t$ such that
+    \begin{align*}
+        G(x,h)=\sum_{n=0}^\infty f_n(x) t^n,
+    \end{align*}
+    i.e., $f_n(x)$ is the coefficient of $t^n$ in the expansion of $G$ in powers of $t$. The utility of the device lies in the fact that sometimes it is possible to find a closed form for $G(x,t)$.
+
+    For our study of Legendre polynomials let us consider the functions $P_n(x)$ defined by the equation
+    \begin{align}
+        G(x,t)&=\left(1+t^2-2xt\right)^{\displaystyle-\frac{1}{2}}\notag\\
+        &=\sum_{n=0}^\infty P_n(x)t^n.\label{eq:generating-eqn-legendre}
+    \end{align}
+    Now stick $x=1$, and we obtain (since $t$ is as small as we like)
+    \begin{align}
+        \sum_{n=0}^{\infty} P_n(1) t^n = \left(1+t^2-2xt\right)^{\displaystyle-\frac{1}{2}} = \frac{1}{1-t}t^n = \sum_{n=0}^{\infty} 1t^n.
+    \end{align}
+    This claims $P_l(1)=1$.
+    
+    The Legendre's equation establishes a recurrence relation in its series (even) solution of the form:
+    \begin{align}
+        a_{n+2}=\frac{n(n+1)-l(l+1)}{(n+1)(n+2)}a_n=0
+    \end{align}
+    If the recurrence relation is evaluated for $n=l$, the series terminates and we obtain a collection of polynomials. These solutions are called the \textit{Legendre polynomials} of order $l$, written as $P_l(x)$.
+    \begin{align}
+        P_l(x)&=a_0\bigg[1-\frac{l(l+1)}{2!}x^2+\frac{l(l+1)(l-2)(l+3)}{4!}x^4+\ldots\bigg]\notag\\
+        P_l(1)&=a_0\bigg[1-\frac{l(l+1)}{2!}+\frac{l(l+1)(l-2)(l+3)}{4!}+\ldots\bigg]\notag\\
+        &=a_0\bigg[\frac{(2l)!}{2^l(l!)^2}\bigg]\label{eq:p_l(1)-need}
+    \end{align}
+    For the claim $P_l(1) = 1$, $a_0=1$. If we can prove the given form $a_l$ to match the right-hand side of (\ref{eq:p_l(1)-need}), we verify the claim made in the question. 
+    
+    Try the given form for $a_l$ and simplify:
+    \begin{align}
+        a_l &= \frac{(2l-1)(2l-3)\cdots(3)(1)}{l!}\notag\\
+        &=\frac{(2l-1)!!}{l!}\notag\\
+        &=\frac{(2l)!}{2^ll!\cdot l!}\notag\\
+        &=\frac{(2l)!}{2^l(l!)^2}.
+    \end{align}
+    This exactly matches the right-hand side of (\ref{eq:p_l(1)-need}).\hfill\textbf{(Showed)}.
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Show 
+    \begin{align}
+        \sum_{k=0}^{n} \frac{(-1)^k (2n-2k)!}{2^n k!(n-k)!(n-2k)!} x^{n-2k} = P_n(x)
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    We recall the functions $P_n(x)$ defined, previously by the equation
+    \begin{align}
+        G(x,t)&=\left(1+t^2-2xt\right)^{-\frac{1}{2}}\notag\\
+        &=\sum_{n=0}^\infty P_n(x)t^n.\label{eq:generating-eqn-legendre}
+    \end{align}
+    The functions so defined are identical to the Legendre polynomials and the function $\displaystyle \left(1+t^2-2xt\right)^{-\frac{1}{2}}$ is in fact the generating function for them.
+
+    The series expansion of a function of the form $\displaystyle f(u)=(1-u)^{-\frac{1}{2}}$ takes the following shape:
+    \begin{align}
+        f(u)=\sum_{n=0}\frac{(2n)!u^n}{2^{2n}(2!)^2}
+    \end{align}
+    Using this in (\ref{eq:generating-eqn-legendre}), we obtain:
+    \begin{align}
+        \bigg[1-\left(2xt-t^2\right)\bigg]^{-\frac{1}{2}}=\sum_{n=0}^\infty\frac{(2n)!\left(2xt-t^2\right)^n}{2^{2n}(2!)^2}\label{eq:expanded-legendre-generating-eqn}
+    \end{align}
+    The factor $\displaystyle\left(2xt-t^2\right)^n$ is an ordinary binomial, so we can use the binomial theorem to expand it.
+
+    The binomial theorem states
+    \begin{align}
+        (a+b)^n&=\sum_{k=0}^n\begin{pmatrix}
+            n\\k
+        \end{pmatrix}a^{n-k}b^k\notag\\
+        &=\sum_{k=0}^n\frac{n!}{k!(n-k)!}a^{n-k}b^k
+    \end{align}
+    With $a=2xt$ and $b=-t^2$, we have
+    \begin{align}
+        \left(2xt-t^2\right)^n&=\sum_{k=0}^n\frac{n!}{k!(n-k)!}(2xt)^{n-k}\left(-t^2\right)^k\notag\\
+        &=\sum_{k=0}^n\frac{n!}{k!(n-k)!}(-1)^k(2x)^{n-k}t^{n+k}\label{eq:binomial-term}
+    \end{align}
+    Using (\ref{eq:binomial-term}) in (\ref{eq:expanded-legendre-generating-eqn}) we get
+    \begin{align}
+        \bigg[1-\left(2xt-t^2\right)\bigg]^{-\frac{1}{2}}=\sum_{n=0}^\infty\sum_{k=0}^n\frac{(2n)!}{2^{2n}(2!)^2}\frac{n!}{k!(n-k)!}(-1)^k(2x)^{n-k}t^{n+k}
+    \end{align}
+    We do an index change $k=s$, $n=r-s$, and alter the summation ranges so that $r$ runs from $0$ to $\infty$, and $s$ from $0$ to $n$. 
+    \begin{align}
+        \bigg[1-\left(2xt-t^2\right)\bigg]^{-\frac{1}{2}}=\sum_{r=0}^\infty\sum_{s=0}^n\frac{\left(2r-2s\right)!}{2^{(2r-2s)}(r-s)!s!(r-2s)!}(-1)^s(2x)^{r-2s}t^r.
+    \end{align}
+    Since these are dummy indices, we will relabel them according to the ones asked in the question.
+    \begin{align}
+        \bigg[1-\left(2xt-t^2\right)\bigg]^{-\frac{1}{2}}=\sum_{n=0}^\infty\sum_{k=0}^n\frac{\left(2n-2k\right)!}{2^{(2n-2k)}(n-k)!k!(n-2k)!}(-1)^k(2x)^{n-2k}t^n.\label{eq:chosen-one}
+    \end{align}
+    Compare (\ref{eq:chosen-one}) with (\ref{eq:generating-eqn-legendre}) to find:
+    \begin{align}
+        \sum_{n=0}^\infty P_n(x)t^n&=\sum_{n=0}^\infty\sum_{k=0}^n\frac{\left(2n-2k\right)!}{2^{(2n-2k)}(n-k)!k!(n-2k)!}(-1)^k(2x)^{n-2k}t^n\notag\\
+        \Rightarrow P_n(x)&=\sum_{k=0}^n\frac{\left(2n-2k\right)!}{2^{(2n-2k)}(n-k)!k!(n-2k)!}(-1)^k(2x)^{n-2k}\notag\\
+        \therefore P_n(x)&=\sum_{k=0}^n\frac{\left(2n-2k\right)!}{2^nk!(n-k)!(n-2k)!}(-1)^kx^{n-2k}\label{eq:p_l(x)-solution}\qquad\text{(\bf Showed)}
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Show 
+    \begin{align}
+        P_l^m(x) = (1 - x^2)^{\displaystyle\frac{(m)}{2}} \frac{d^m}{dx^m} P_l(x)
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    The associated Legendre equation has the form
+    \begin{align}
+        \left(1-x^2\right)y^{\prime\prime}-2xy^{\prime}+\bigg[l(l+1)-\frac{m^2}{1-x^2}\bigg]y=0\label{eq:associated-legendre-equation}
+    \end{align}
+    If we take $m=0$, the solutions are the Legendre Polynomials $P_l(x)$. That is, they are the solutions of
+    \begin{align}
+        \frac{d}{dx}\bigg[\left(1-x^2\right)\frac{dP_l}{dx}\bigg]+l(l+1)P_l&=0\notag\\
+        \left(1-x^2\right)P_l^{\prime\prime}-2xP_l^{\prime}+l(l+1)P_l&=0.\label{eq:m=0-equation}
+    \end{align}
+    To find the solution to (\ref{eq:associated-legendre-equation}), we can use Leibnitz formula to differentiate the $m=0$ equation (\ref{eq:m=0-equation}) $m$ times.
+    \begin{align}
+        \left(1-x^2\right)P_l^{(m+2)}-2mxP_l^{(m+1)}-m(m-1)P_l-2x(m+1)P_l^{(m+1)}-2mP_l^{(m)}+l(l+1)P_l^{(m)}&=0\notag\\
+        \left(1-x^2\right)P_l^{(m+2)}-2x(m+1)P_l^{(m+1)}+\bigg[l(l+1)-m^2-m\bigg]P_l^{(m)}&=0\label{eq;legendre-with-m-terms-leibnitz}
+    \end{align}
+    For simplicity, we may define $P_l^{(m)}\equiv u(x)$:
+    \begin{align}
+        \left(1-x^2\right)u^{\prime\prime}-2x(m+1)u^{\prime}+\bigg[l(l+1)-m^2-m\bigg]u&=0\label{eq;legendre-with-m-terms-leibnitz-with-u-subs}
+    \end{align}
+    We make another substitution $\displaystyle u(x)=v(x)\left(1-x^2\right)^{\displaystyle-\frac{1}{2}}$:
+    \begin{align}
+        u^{\prime}&=v^{\prime}\left(1-x^2\right)^{\displaystyle-\frac{(m)}{2}}+mxv\left(1-x^2\right)^{\displaystyle-\frac{(m+2)}{2}}\notag\\
+        &=\bigg[v^{\prime}+\frac{mxv}{\left(1-x^2\right)}\bigg]\left(1-x^2\right)^{\displaystyle-\frac{(m)}{2}}\label{eq:first-derivative-u-subs}\\
+        u^{\prime\prime}&=\bigg[v^{\prime\prime}+\frac{mxv^{\prime}}{1-x^2}+\frac{mv}{1-x^2}+\frac{2mx^2v}{\left(1-x^2\right)^2}\bigg]\left(1-x^2\right)^{\displaystyle-\frac{(m)}{2}}+\left(v^{\prime}+\frac{mxv}{1-x^2}\right)xm\left(1-x^2\right)^{\displaystyle-\frac{(m+2)}{2}}\notag\\
+        &=\bigg[v^{\prime\prime}+\frac{2mxv^{\prime}}{1-x^2}+\frac{mv}{1-x^2}+\frac{m(m+2)x^2v}{\left(1-x^2\right)^2}\bigg]\left(1-x^2\right)^{\displaystyle-\frac{(m)}{2}}\label{eq:second-derivative-u-subs}
+    \end{align}
+    Substitute (\ref{eq:first-derivative-u-subs}) and (\ref{eq:second-derivative-u-subs}) into (\ref{eq;legendre-with-m-terms-leibnitz-with-u-subs}):
+    \begin{align}
+        \left(1-x^2\right)v^{\prime\prime}-2xv^{\prime}+mv+\frac{v}{1-x^2}\bigg[m(m+2)x^2+2m(m+1)x^2\bigg]+\bigg[l(l+1)-m^2-m\bigg]v&=0\notag\\
+        \left(1-x^2\right)v^{\prime\prime}-2xv^{\prime}+mv-\frac{m^2x^2v}{1-x^2}+l(l+1)v-m^2\frac{1-x^2}{1-x^2}v-mv&=0\notag\\
+        \left(1-x^2\right)v^{\prime\prime}-2xv^{\prime}+l(l+1)v-\frac{m^2}{1-x^2}v&=0\notag\\
+        \frac{d}{dx}\bigg[\left(1-x^2\right)v^{\prime}\bigg]+l(l+1)v-\frac{m^2}{1-x^2}v&=0
+    \end{align}
+    The function $v(x)$ is a solution of (\ref{eq:associated-legendre-equation}), called associated Legendre functions, commonly denoted as $P_l^m(x)$.
+
+    Recall the substitution where we switched from $u$ to $v$,
+    \begin{align}
+        u(x)&=u(x)=v(x)\left(1-x^2\right)^{\displaystyle-\frac{1}{2}}\notag\\
+        v(x)&=u(x)\left(1-x^2\right)^{\displaystyle\frac{(m)}{2}}\notag\\
+        &=\left(1-x^2\right)^{\displaystyle\frac{(m)}{2}}\frac{d^m P_l(x)}{dx^m}\notag\\[15pt]
+        &=P_l^m(x)\notag\\
+        \therefore P_l^m(x)&=\left(1-x^2\right)^{\displaystyle\frac{(m)}{2}}\frac{d^m P_l(x)}{dx^m},\qquad\text{(\bf Showed)}\label{eq:answer-to-question-3}
+    \end{align}
+    where $P_l(x)$ was found in the problem-2 as (\ref{eq:p_l(x)-solution}).
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Evaluate 
+    \begin{align}
+        \int_{-1}^{1} P_k^m P_l^m \, dx = \delta_{kl} \frac{2}{2l+1} \frac{(l+m)!}{(l-m)!}
+    \end{align}
+    Steps:
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that
+        \begin{align*}
+            \frac{d^{l-m}}{dx^{l-m}} (x^2 - 1)^l = \frac{(l-m)!}{(l+m)!} (x^2 - 1)^m \frac{d^{l+m}}{dx^{l+m}} (x^2 - 1)^l\label{eq:what-to-show}
+        \end{align*}
+         \item Use the above expression and equation (\ref{eq:answer-to-question-3}) to produce $P_l^m P_l^m$.
+        \item Then integrate by parts, lowering the $l + m$ derivative and raising the $l - m$ derivative until both are $l$ derivatives.
+        \item Use 
+        \begin{align*}
+            \int_{-1}^{1} P_l P_k \, dx = \delta_{kl} \frac{2}{2l+1}
+        \end{align*}
+    \end{enumerate}
+    \bigskip\bigskip\hline\hline\bigskip
+        Consider the Leibniz equation:
+        \begin{align}
+            \frac{d^{l+m}}{dx^{l+m}} \left\{\left(x^2-1\right)^l\right\}&=\frac{d^{l+m}}{dx^{l+m}} \left\{(x-1)^l (x+1)^l\right\}\notag\\
+            &= \sum_{r=0}^{l+m} \binom{l+m}{r} \frac{d^r}{dx^r} \left\{(x-1)^l\right\} \frac{d^{l+m-r}}{dx^{l+m-r}} \left\{(x+1)^l\right\}
+        \end{align}
+        The \( r \)-th derivative of \( (x-1)^l \) is:
+        \begin{align*}
+            \frac{d^r}{dx^r} (x-1)^l &= \frac{l!}{(l-r)!} (x-1)^{l-r} \quad \text{if } r \leq l
+        \end{align*}
+        The \( (l+m-r) \)-th derivative of \( (x+1)^l \) is:
+        \begin{align*}
+            \frac{d^{l+m-r}}{dx^{l+m-r}} (x+1)^l &= \frac{l!}{(m-r)!} (x+1)^{r-m} \quad \text{if } l+m-r \leq l
+        \end{align*}
+        Substitute these derivatives into the Leibniz rule:
+        \begin{align*}
+            \frac{d^{l+m}}{dx^{l+m}} \left\{(x-1)^l (x+1)^l\right\} &= \sum_{r=0}^{l+m} \frac{(l+m)!}{r! (l+m-r)!} \frac{l!}{(l-r)!} (x-1)^{l-r} \frac{l!}{(m-r)!} (x+1)^{r-m}
+        \end{align*}
+        Adjust the index of summation $\displaystyle s = r - m$ and $r = s + m$:
+        \begin{align}
+            \frac{d^{l+m}}{dx^{l+m}} \left\{(x-1)^l (x+1)^l\right\}&= \sum_{s=0}^{l-m} \frac{(l+m)!(l!)^2(x-1)^{l-s-m} (x+1)^s}{s!(l-s)!(l-s-m)!(s+m)!}
+        \end{align}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        We try a similar approach to calculate the $l-m$th derivative of $x^2-1$.
+        \begin{align*}
+            \frac{d^{l-m}}{dx^{l-m}} \left\{(x-1)^l (x+1)^l\right\} &= \sum_{r=0}^{l-m} \binom{l-m}{r} \frac{d^r}{dx^r} \left\{(x-1)^l\right\} \frac{d^{l-m-r}}{dx^{l-m-r}} \left\{(x+1)^l\right\}
+        \end{align*}
+        The \( r \)-th derivative of \( (x-1)^l \) is:
+        \begin{align*}
+        \frac{d^r}{dx^r} (x-1)^l &= \frac{l!}{(l-r)!} (x-1)^{l-r} \quad \text{if } r \leq l
+        \end{align*}
+        The \( (l-m-r) \)-th derivative of \( (x+1)^l \) is:
+        \begin{align*}
+            \frac{d^{l-m-r}}{dx^{l-m-r}} (x+1)^l &= \frac{l!}{(m-r)!} (x+1)^{r-m} \quad \text{if } l-m-r \leq l
+        \end{align*}
+        Substitute these derivatives into the Leibniz rule:
+        \begin{align*}
+            \frac{d^{l-m}}{dx^{l-m}} \left\{(x-1)^l (x+1)^l\right\} &= \sum_{r=0}^{l-m} \frac{(l-m)!}{r! (l-m-r)!} \frac{l!}{(l-r)!} (x-1)^{l-r} \frac{l!}{(m-r)!} (x+1)^{r-m}
+        \end{align*}
+        Adjust the index of summation $\displaystyle s = r - m$ and $r = s + m$:
+        \begin{align}
+            \frac{d^{l-m}}{dx^{l-m}} \left\{(x-1)^l (x+1)^l\right\}&= \sum_{s=0}^{l-m} \frac{(l-m)!(l!)^2}{s!(l-s)!(l-s-m)!(s+m)!} (x-1)^{l-s-m} (x+1)^s\notag\\
+            &= \sum_{r=m}^{l} \frac{(l-m)!(x-1)^{l-r} (x+1)^{r-m}}{r!(l-r)!(r-m)!(l-r-m)!} \label{eq:l-m_stuff}
+        \end{align}
+        Replace $r$ by $s$ in (\ref{eq:l-m_stuff}):
+        \begin{align}
+            \frac{d^{l-m}}{dx^{l-m}} \left\{\left(x^2-1\right)^l\right\} &= \sum_{r=m}^{l} \frac{(l-m)!(x-1)^{l-s} (x+1)^{s+m}}{r!(l-s)!(s+m)!(l-s-m)!}
+        \end{align}
+        Now consider the right-hand side of (\ref{eq:what-to-show}):
+        \begin{align*}
+            \frac{(l-m)!}{(l+m)!}(x^2-1)^m\frac{d^{l+m}}{dx^{l+m}}\left\{(x^2 - 1)^l\right\}&=\frac{(l-m)!}{(l+m)!}(x^2-1)^m\cdot\sum_{s=0}^{l-m} \frac{(l+m)!(l!)^2(x-1)^{l-s-m}(x+1)^s}{s!(l-s)!(l-s-m)!(s+m)!}\notag\\
+            &= \frac{(l-m)!}{(l+m)!} \cdot \sum_{s=0}^{l-m} \frac{(l+m)!(l!)^2(x^2-1)^m \cdot (x-1)^{l-s-m} (x+1)^s}{s!(l-s)!(l-s-m)!(s+m)!} \notag\\
+            &= \frac{(l-m)!}{s!(l-s)!(l-s-m)!(s+m)!} \cdot (x^2-1)^m \cdot (x-1)^{l-s-m} (x+1)^s\notag\\
+            &= \frac{(l-m)!}{s!(l-s)!(l-s-m)!(s+m)!} \cdot (x-1)^{m + l-s-m} (x+1)^{m + s} \notag\\
+            &= \frac{(l-m)!(x-1)^{l-s} (x+1)^{m+s}}{s!(l-s)!(l-s-m)!(s+m)!}\notag\\
+            &=\underbrace{\frac{d^{l-m}}{dx^{l-m}} \left\{(x^2 - 1)^l\right\}}_{\text{Left-hand side of (\ref{eq:what-to-show})}}\notag\\
+            \therefore\frac{d^{l-m}}{dx^{l-m}} (x^2 - 1)^l &= \frac{(l-m)!}{(l+m)!} (x^2 - 1)^m \frac{d^{l+m}}{dx^{l+m}} (x^2 - 1)^l\qquad\text{(\bf Showed)}
+        \end{align*}
+        This can also be read as 
+        \begin{align}
+            P_l^{-m}(x)=(-1)^m\frac{(l-m)!}{(l+m)!}P_l^m(x)
+        \end{align}
+        Consider now the \textit{Rodrigues} formula for Legendre Polynomials.
+        \begin{align}
+            P_l(x)&=\frac{1}{2^ll!}\frac{d^l}{dx^l}\left(x^2-1\right)^l\label{eq:rodrigues-formula}
+        \end{align}
+        Using (\ref{eq:rodrigues-formula}) and (\ref{eq:answer-to-question-3}), we produce the product $P_l^m$:
+        \begin{align}
+            P_l^m(x)=\frac{1}{2^ll!}\left(1-x^2\right)^{\frac{m}{2}}\frac{d^{l+m}}{dx^{l+m}}\left(x^2-1\right)^l\label{eq:p_l^m-definition}
+        \end{align}
+        For our simplicity we take a notation $X(x)=x^2-1$:
+        \begin{align}
+            P_l^m(x)=\frac{1}{2^ll!}\left(-X\right)^{\frac{m}{2}}\frac{d^{l+m}}{dx^{l+m}}\left(X\right)^l\label{eq:p_l^m-definition}
+        \end{align}
+        Produce the product $\displaystyle P_p^m(x) \cdot P_q^m(x)$:
+        \begin{align}
+            P_p^m(x) \cdot P_q^m(x) &= \frac{(-1)^m}{2^{p+q}p!q!}X^m\frac{d^{p+m}}{dx^{p+m}}X^p\frac{d^{q+m}}{dx^{q+m}}X^q
+        \end{align}
+        We now evaluate the following integral by doing integration by parts and noting $X=0$ vanished at both integration endpoints.
+
+        Choose
+        \begin{align*}
+            u &= X^m \quad \text{and} \quad dv = \frac{d^{p+m}}{dx^{p+m}} X^p \cdot \frac{d^{q+m}}{dx^{q+m}} X^q \, dx\notag\\
+            v &= \bigints \frac{d^{p+m}}{dx^{p+m}} X^p \cdot \frac{d^{q+m}}{dx^{q+m}} X^q \, dx\notag
+        \end{align*}
+        These give:
+        \begin{align}
+             \bigint_{-1}^{+1}P_p^m(x)P_q^m(x)&=\frac{(-1)^m}{2^{p+q}p!q!}\bigint_{-1}^{+1}X^m\frac{d^{p+m}}{dx^{p+m}}X^p\frac{d^{q+m}}{dx^{q+m}}X^qdx\notag\\
+             &=\frac{(-1)^m}{2^{p+q}p!q!}\bigg[\frac{d^{q+m-1}X^q}{dx^{q+m-1}}X^m\frac{d^{p+m}}{dx^{p+m}}X^p\bigg|_{-1}^{+1}-\bigint_{-1}^{+1}\frac{d^{q+m-1}X^q}{dx^{q+m-1}}\frac{d}{dx}\left(X^m\frac{d^{p+m}}{dx^{p+m}}X^p\right)dx\bigg]\notag\\
+             &=\frac{(-1)^m}{2^{p+q}p!q!}\bigg[-\bigint_{-1}^{+1}\frac{d^{q+m-1}X^q}{dx^{q+m-1}}\frac{d}{dx}\left(X^m\frac{d^{p+m}}{dx^{p+m}}X^p\right)dx\bigg]\notag\\
+             &=\frac{(-1)^m(-1)}{2^{p+q}p!q!}\bigg[\left( \frac{d^{q+m-1} X^q}{dx^{q+m-1}} \cdot X^m \frac{d^{p+m}}{dx^{p+m}} X^p \right) \bigg|_{-1}^{1} - \bigints_{-1}^{1} X^m \frac{d^{p+m}}{dx^{p+m}} X^p \cdot \frac{d^{q+m}}{dx^{q+m}} X^q \, dx\bigg]\notag\\
+             &=\frac{(-1)^m(-1)^2}{2^{p+q} p! q!} \left[ \bigints_{-1}^{1}\frac{d^{q+m-2} X^q}{dx^{q+m-2}}\frac{d}{dx}\left(X^m \frac{d^{p+m}}{dx^{p+m}} X^p \right) \right].
+        \end{align}
+        We can go on an integrate by parts $q+m$ times. For each of the first $m$ integrations, $-X$ terms are present in the limit-applying portion and thus vanishes.
+
+        For each of the remaining $q$ integrations, $-X$ terms are present in the limit-applying portion and thus vanishes. This means
+        \begin{align}
+            \bigint_{-1}^{+1}P_p^m(x)P_q^m(x)&=\frac{(-1)^m(-1)^{q+m}}{2^{p+q}p!q!}\bigint_{-1}^{+1}X^q\frac{d^{q+m}}{dx^{q+m}}\left(X^m\frac{d^{p+m}}{dx^{p+m}}X^p\right)dx\label{eq:integrand-need}
+            % &=\frac{(-1)^m(-1)^{q+m}}{2^{p+q}p!q!}\frac{(p+q)!}{(p-q)!}\bigint_{-1}^{+1}X^q\frac{d^{p-q}}{dx^{p-q}}X^pdx\notag\\
+            % &=\frac{(-1)^m(-1)^{q+m}}{2^{p+q}p!q!}\frac{(p+q)!}{(p-q)!}\bigint_{-1}^{+1}X^q\frac{p!}{q!} X^qdx\notag\\
+            % &=\frac{(-1)^m(-1)^{q+m}}{2^{p+q}(q!)^2}\frac{(p+q)!}{(p-q)!}\bigint_{-1}^{+1}X^{2q}dx
+        \end{align}
+        The highest power of $x$ in $X^p(x)=\left(x^2-1\right)^p$ is $2p$. So, the highest power of $x$ in $\displaystyle\frac{d^{p+m}}{dx^{p+m}}X^p$ is $\displaystyle x^{2p-p-m}=x^{p-m}$. Similarly, $x$ will have the highest power of $2m$ in $X^m$. In the multiplied term $\displaystyle X^m\frac{d^{p+m}}{dx^{p+m}}X^p$, this gives an overall leading term of $x^{p+m}$.
+
+        For the case of $p\ne q$, taking the $(q+m)^{\text{th}}$ derivative of $\displaystyle x^{p+m}$ will always give zero, setting the integrand in (\ref{eq:integrand-need}) to zero.
+
+        For the case of $p = q$, the derivative part of the integrand in (\ref{eq:integrand-need}) will be a constant. First begin with the following:
+        \begin{align}
+            \frac{d^{p+m}}{dx^{p+m}}X^p&=\frac{(2p)!}{\left[2p-(p+m)\right]!} x^{2p-(p+m)}+\ldots\notag\\
+            &=\frac{(2p)!}{\left(p-m\right)!} x^{p-m}+\ldots
+        \end{align}
+        Now check
+        \begin{align}
+            \frac{d^{p+m}}{dx^{p+m}}\left(X^mx^{p-m}\right)&=\frac{(2p)!}{\left(p-m\right)!}\frac{d^{p+m}}{dx^{p+m}}\left(x^{2m}x^{p-m}+\ldots\right)\notag\\
+            &=\frac{(2p)!}{\left(p-m\right)!}\frac{d^{p+m}}{dx^{p+m}}\left(x^{p+m}+\ldots\right)\notag\\
+            &=\frac{(2p)!}{\left(p-m\right)!}\left(p+m\right)!
+        \end{align}
+        We go back to (\ref{eq:integrand-need}) to find:
+        \begin{align}
+            \bigint_{-1}^{+1}P_p^m(x)P_q^m(x)&=\frac{(-1)^{q+2m}}{2^{2p}(p!)^2}\frac{(2p)!}{\left(p-m\right)!}\left(p+m\right)!\bigint_{-1}^{+1}X^pdx\notag\\
+            &=\frac{(-1)^{q+2m}}{2^{2p}(p!)^2}\frac{(2p)!}{\left(p-m\right)!}\left(p+m\right)!\bigint_{-1}^{+1}\left(x^2-1\right)^pdx\notag\\
+            &=\frac{(-1)^{q+2m}}{2^{2p}(p!)^2}\frac{(2p)!}{\left(p-m\right)!}\left(p+m\right)!\bigg[(-1)^p\frac{(-1)^p(p!)^2 2^{1+2p}}{(2p+1)!}\bigg]\notag\\
+            &=\frac{2}{2p+1}\frac{\left(p+m\right)!}{\left(p-m\right)!}
+        \end{align}
+        Combining the case for $p\ne q$ with this one, we end up at our desired result:
+        \begin{align}
+            \bigint_{-1}^{+1}P_k^m(x)P_l^m(x)=\frac{2}{2l+1}\frac{\left(l+m\right)!}{\left(l-m\right)!}\delta_{kl}.\notag
+        \end{align}
+        \bigskip\bigskip\hline\hline\bigskip
+\end{enumerate}
+
+

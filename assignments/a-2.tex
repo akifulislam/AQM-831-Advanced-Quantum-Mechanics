@@ -1,0 +1,246 @@
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} July 31 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 2 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 2} %\hfill \newline
+\begin{enumerate}
+    \item For a simple harmonic oscillator (S.H.O.)
+        \begin{align*}
+        H = \frac{1}{2m}\dot{q}^2 + \frac{1}{2}m\omega^2q^2
+        \end{align*}
+        Solve the problem via the Hamilton-Jacobi method, i.e., show that
+        \begin{align*}
+        q = \sqrt{\frac{2E}{m\omega^2}} \sin(\omega t + \beta)
+        \end{align*}
+        What is the expression for the corresponding momentum?
+        \bigskip\bigskip\hline\hline\bigskip
+\section*{Solution:}
+The Hamiltonian for a simple harmonic oscillator (S.H.O.) is given by:
+\begin{align}
+    H = \frac{1}{2m}\dot{q}^2 + \frac{1}{2}m\omega^2q^2,\label{eq:hamiltonian-sho}
+\end{align}
+where $m$ is the mass, $\omega$ is the angular frequency, $q$ is the generalized coordinate, and $\dot{q}$ is the velocity. This Hamiltonian is not an explicit function of time.
+
+Then, the Hamilton-Jacobi equation can be written as:
+\begin{align}
+    H\left(q, \frac{\partial S}{\partial q}\right) + \frac{\partial S}{\partial t} = 0,\label{eq:hamilton-jacobi-def}
+\end{align}
+where $S(q,t)$ is the Hamilton's principal function, which is a function of generalized coordinates $q$ and time $t$. $H(q,p,t)$ is the Hamiltonian of the system. 
+
+Mathematically, this equation is a first-order P.D.E. We attempt to solve it using the separation of variables method. We want to write $S$ as follows, broken into two parts for individual variables
+\begin{align}
+    S(q, t) = A(q) + B(t)\label{eq:sep-var-equation}
+\end{align}
+The whole point of the Hamilton-Jacobi theory is to find a canonical transformation (from ($q_i,p_i$) to ($Q_i, P_i$)) such that the transformed Hamiltonian vanishes for all values of the variables. Then the old and new $q$s and $p$s are related by
+\begin{align}
+    p_i&=\frac{\partial S}{\partial q_i}\\
+    Q_i&=\frac{\partial S}{\partial P_i}
+\end{align}
+so $S$ satisfies (\ref{eq:hamilton-jacobi-def}). If $S$ in (\ref{eq:sep-var-equation}) is some solution of the differential equation, then $S+\alpha$, where $\alpha$ is an independent constant of integration, is also a solution. Hence for our purposes a complete solution of (\ref{eq:hamilton-jacobi-def}) can be written as $S=S(q_i,\alpha_i,t)$. This suggests the following:
+\begin{align}
+    P_i&=\alpha_i\label{eq:new-p-def}\\
+    Q_i&=\frac{\partial S}{\partial \alpha_i}\label{eq:new-q-def}
+\end{align}
+Substituting (\ref{eq:hamiltonian-sho}) and (\ref{eq:sep-var-equation}) into (\ref{eq:hamilton-jacobi-def}) gives:
+\begin{align*}
+    \frac{1}{2m}\left[\left(\frac{\partial S}{\partial q}\right)^2+m^2\omega^2q^2\right] + \frac{\partial S}{\partial t} = 0.
+\end{align*}
+The terms within the square bracket are the explicitly $q$ dependent terms. To separate it from the time-dependent part, substitute (\ref{eq:sep-var-equation}) into (\ref{eq:hamilton-jacobi-def}) and set it to a constant $\alpha$.
+\begin{align}
+    \frac{1}{2m}\left[\left(\frac{\partial A}{\partial q}\right)^2+m^2\omega^2q^2\right]=\alpha\label{eq:q-var-sep-start}
+\end{align}
+Comparing eqs. (\ref{eq:hamiltonian-sho}) and (\ref{eq:q-var-sep-start}), we can see that this constant $\alpha$ is the total energy of the system.
+\begin{align}
+    E = \alpha.
+\end{align}
+We now try to solve for $A(q)$ from (\ref{eq:q-var-sep-start})
+\begin{align}
+    \left(\frac{\partial A}{\partial q}\right)^2&=2\left(Em-\frac{1}{2}m^2\omega^2q^2\right)\notag\\
+    A(q)&=\bigint\sqrt{2\left(Em-\frac{1}{2}m^2\omega^2q^2\right)}dq\label{eq:q-var-integration-start}
+\end{align}
+In the meantime, the time-dependent part gives:
+\begin{align}
+    \frac{\partial S}{\partial t}&=-\alpha\notag\\
+    \Right \partial B&=-\alpha dt\notag\\
+    \therefore B(t)&=-\alpha t\label{eq:t-var-integration-start}
+\end{align}
+With (\ref{eq:q-var-integration-start}) and (\ref{eq:t-var-integration-start}) combined we get the full form of $S$:
+\begin{align}
+    S(q,t)&=\bigint\sqrt{2\left(Em-\frac{1}{2}m^2\omega^2q^2\right)}dq-\alpha t
+\end{align}
+We find the expression for $q$ from (\ref{eq:new-q-def})
+\begin{align}
+    Q&=\frac{\partial S}{\partial \alpha}\notag\\
+    &=\frac{1}{\sqrt{2}}\bigint\frac{dq}{\displaystyle\sqrt{\left(Em-\frac{1}{2}m^2\omega^2q^2\right)}}-t\notag\\
+    &=\frac{1}{\sqrt{2mE}}\bigint\frac{dq}{\displaystyle\sqrt{\left(1-\frac{m\omega^2q^2}{2E}\right)}}-t\notag\\
+    &=\frac{1}{\sqrt{2mE}}\bigint\frac{dq}{\displaystyle\sqrt{1-\left(\frac{\sqrt{m}\omega q}{\sqrt{2E}}\right)^2}}-t\label{eq:complex-int-step-1}
+\end{align}
+In order to solve the above integral, substitute:
+\begin{align}
+    u&=\frac{\sqrt{m}\omega q}{\sqrt{2E}}\\
+    du&=\frac{\sqrt{m}\omega}{\sqrt{2E}}dq\\
+    q&=\frac{\sqrt{2E}u}{\sqrt{m}\omega}\\
+    dq&=\frac{1}{\omega}\sqrt{\frac{2E}{m}}du
+\end{align}
+Use this to simplify (\ref{eq:complex-int-step-1}):
+\begin{align}
+    Q&=\frac{1}{\omega}\sqrt{\frac{2E}{m}}\bigint\frac{1}{\sqrt{1-u^2}}du-t\notag\\
+    &=\frac{1}{\omega}\sqrt{\frac{2E}{m}}\left(\sin^{-1}{u}\right)-t\notag\\
+    &=\frac{1}{\omega}\sqrt{\frac{2E}{m}}\left[\sin^{-1}\left({\frac{\sqrt{m}\omega q}{\sqrt{2E}}}\right)\right]-t\notag\\
+    \Rightarrow\sin^{-1}\left({\frac{\sqrt{m}\omega q}{\sqrt{2E}}}\right)&={\omega}\sqrt{\frac{m}{2E}}\left(Q+t\right)\notag\\
+    \Rightarrow{\frac{\sqrt{m}\omega q}{\sqrt{2E}}}&=\sin\left[{\omega}\sqrt{\frac{m}{2E}}\left(Q+t\right)\right]\notag\\
+    q&=\frac{1}{\omega}\sqrt{\frac{2E}{m}}\sin\left[{\omega}\sqrt{\frac{m}{2E}}\left(Q+t\right)\right]\notag\\
+    q&=\sqrt{\frac{2E}{m\omega^2}}\sin\left[\omega t+\sqrt{\frac{m\omega^2}{2E}}Q\right]\notag\\
+    \therefore q&=\sqrt{\frac{2E}{m\omega^2}} \sin(\omega t + \beta).
+\end{align}
+where $\displaystyle\beta = \sqrt{\frac{m\omega^2}{2E}}Q$ is an integration constant related to the initial phase of the motion.
+
+Now, we find the expression for the corresponding momentum.
+
+The momentum $p$ is given by:
+\begin{align*}
+    p = \frac{\partial S}{\partial q} = \frac{\partial A}{\partial q} &= \frac{\partial}{\partial q}\left[\sqrt{2\left(Em-\frac{1}{2}m^2\omega^2q^2\right)}\partial q\right]\notag\\
+    &=\sqrt{2mE}\times\sqrt{1 - \frac{m\omega^2q^2}{2E}}\notag\\
+    &=\sqrt{2mE}\times\sqrt{1 - \left(\frac{m\omega^2}{2E}\times\frac{2E}{m\omega^2}\sin^2(\omega t + \beta)\right)}\notag\\
+    &=\sqrt{2mE}\times\sqrt{1 - \sin^2(\omega t + \beta)}\notag\\[3pt]
+    \therefore p&=\sqrt{2mE}\cos(\omega t + \beta).
+\end{align*}
+We have used the identity $\cos^2\theta=1-\sin^2\theta$.
+\bigskip\bigskip\hline\hline\bigskip
+
+\item Use the electromagnetic Lagrangian density
+        \begin{align*}
+        \mathcal{L}_{EM} = \vec{E} \cdot \left(\vec{\nabla} \times \vec{E} + \frac{\partial \vec{B}}{\partial t}\right) + \vec{B} \cdot \left(\vec{\nabla} \times \vec{B} - \frac{\partial \vec{E}}{\partial t}\right) - 8\pi \vec{j} \cdot \vec{B}
+        \end{align*}
+        Use the Euler-Lagrange equations to find the equations of motion.
+        \bigskip\bigskip\hline\hline\bigskip
+\section*{Solution:}
+The electromagnetic Lagrangian density is given by:
+\begin{align}
+    \mathcal{L}_{EM} = \vec{E} \cdot \left( \vec{\nabla} \times \vec{E} + \frac{\partial \vec{B}}{\partial t} \right) + \vec{B} \cdot \left( \vec{\nabla} \times \vec{B} - \frac{\partial \vec{E}}{\partial t} \right) - 8\pi \vec{j} \cdot \vec{B}\label{eq:em-lagrangian}
+\end{align}
+
+The Euler-Lagrange equation for a field $\displaystyle \phi$ is:
+
+\begin{align}
+    \frac{\partial \mathcal{L}}{\partial \phi} - \frac{\partial}{\partial t} \left( \frac{\partial \mathcal{L}}{\displaystyle\partial \left( \frac{\partial \phi}{\partial t} \right)} \right) - \vec{\nabla} \cdot \left( \frac{\partial \mathcal{L}}{\displaystyle\partial (\vec{\nabla} \phi)} \right) = 0\label{eq:euler-lagrange-for-fields}
+\end{align}
+We first apply this to the electric field $\vec{E}$, and calculate each term above
+\subsection*{Calculate $\displaystyle\frac{\partial \mathcal{L}_{EM}}{\partial \vec{E}}$}
+To find the partial derivative of $\mathcal{L}_{EM}$ with respect to $\vec{E}$, consider terms in $\mathcal{L}_{EM}$ that include $\vec{E}$. Here, only the first and second terms depend directly on $\vec{E}$:
+\begin{align*}
+    \frac{\partial}{\partial \vec{E}} \left( \vec{E} \cdot (\vec{\nabla} \times \vec{E}) + \vec{E} \cdot \frac{\partial \vec{B}}{\partial t} - \vec{B} \cdot \frac{\partial \vec{E}}{\partial t} \right)
+\end{align*}
+Calculating these gives:
+
+For $\displaystyle\vec{E} \cdot (\vec{\nabla} \times \vec{E})$:
+\begin{align}
+  \frac{\partial}{\partial \vec{E}} \left( \vec{E} \cdot (\vec{\nabla} \times \vec{E}) \right) = \vec{\nabla} \times \vec{E}\label{eq:important-step-1}
+\end{align}
+This follows from the product rule for vector calculus: the derivative of a dot product $\vec{A} \cdot \vec{B}$ with respect to $\vec{A}$ is $\vec{B}$.
+
+For $\displaystyle\vec{E} \cdot \frac{\partial \vec{B}}{\partial t}$:
+
+\begin{align}
+  \frac{\partial}{\partial \vec{E}} \left( \vec{E} \cdot \frac{\partial \vec{B}}{\partial t} \right) = \frac{\partial \vec{B}}{\partial t}\label{eq:important-step-2}
+\end{align}
+Thus, the contribution is:
+\begin{align}
+    \frac{\partial \mathcal{L}_{EM}}{\partial \vec{E}} = \vec{\nabla} \times \vec{E} + \frac{\partial \vec{B}}{\partial t}\label{eq:important-step-3}
+\end{align}
+\subsection*{Calculate $\displaystyle\frac{\partial \mathcal{L}_{EM}}{\displaystyle\partial \left(\frac{\partial \vec{E}}{\partial t}\right)}$}
+
+We find the partial derivative of $\mathcal{L}_{EM}$ with respect to $\displaystyle\frac{\partial \vec{E}}{\partial t}$ of the term $\displaystyle-\vec{B} \cdot \frac{\partial \vec{E}}{\partial t}$ only.
+
+This gives:
+\begin{align}
+    \frac{\partial}{\displaystyle\partial \left(\frac{\partial \vec{E}}{\partial t}\right)} \left( -\vec{B} \cdot \frac{\partial \vec{E}}{\partial t} \right) = -\vec{B}\label{eq:important-step-4}
+\end{align}
+\subsection*{Calculate $\displaystyle\frac{\partial}{\partial t} \left( \frac{\partial \mathcal{L}_{EM}}{\displaystyle\partial \left(\frac{\partial \vec{E}}{\partial t}\right)} \right)$}
+
+Differentiate (\ref{eq:important-step-4}) once with respect to time:
+\begin{align}
+    \frac{\partial}{\partial t} \left( -\vec{B} \right) = -\frac{\partial \vec{B}}{\partial t}
+\end{align}
+
+\subsection*{Calculate $\displaystyle\vec{\nabla} \cdot \left( \frac{\partial \mathcal{L}_{EM}}{\partial (\vec{\nabla} \vec{E})} \right)$}
+
+Since $\mathcal{L}_{EM}$ does not explicitly depend on $\vec{\nabla} \vec{E}$, this term is zero:
+
+\begin{align}
+    \vec{\nabla} \cdot \left( \frac{\partial \mathcal{L}_{EM}}{\partial (\vec{\nabla} \vec{E})} \right) = 0
+\end{align}
+Substituting these results into (\ref{eq:euler-lagrange-for-fields}) for $\vec{E}$:
+\begin{align}
+    \vec{\nabla} \times \vec{E} + \frac{\partial \vec{B}}{\partial t} - \left(-\frac{\partial \vec{B}}{\partial t}\right) = 0
+\end{align}
+This simplifies to:
+\begin{align}
+    \vec{\nabla} \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}
+\end{align}
+This derived equation is Faraday's law of induction, one of Maxwell's equations. It describes how a changing magnetic field induces an electric field.
+
+Now we apply this to the magnetic field $\vec{B}$.
+\subsection*{Calculate $\displaystyle\frac{\partial \mathcal{L}_{EM}}{\partial \vec{B}}$}
+
+To find the partial derivative of $\mathcal{L}_{EM}$ with respect to $\vec{B}$, consider terms in $\mathcal{L}_{EM}$ that include $\vec{B}$. The terms that depend on $\vec{B}$ are: $\displaystyle\vec{B} \cdot \left( \vec{\nabla} \times \vec{B} - \frac{\partial \vec{E}}{\partial t} \right)-8\pi \vec{j} \cdot \vec{B}$.
+
+Calculating each term separately gives:
+
+For $\displaystyle\vec{B} \cdot (\vec{\nabla} \times \vec{B})$:
+\begin{align}
+  \frac{\partial}{\partial \vec{B}} \left( \vec{B} \cdot (\vec{\nabla} \times \vec{B}) \right) = \vec{\nabla} \times \vec{B}\label{eq:important-step-5}
+\end{align}
+For $\displaystyle-\vec{B} \cdot \frac{\partial \vec{E}}{\partial t}$:
+\begin{align}
+  \frac{\partial}{\partial \vec{B}} \left( -\vec{B} \cdot \frac{\partial \vec{E}}{\partial t} \right) = -\frac{\partial \vec{E}}{\partial t}\label{eq:important-step-6}
+\end{align}
+For $\displaystyle-8\pi \vec{j} \cdot \vec{B}$:
+\begin{align}
+  \frac{\partial}{\partial \vec{B}} \left( -8\pi \vec{j} \cdot \vec{B} \right) = -8\pi \vec{j}\label{eq:important-step-7}
+\end{align}
+Thus, the contribution is:
+\begin{align}
+    \frac{\partial \mathcal{L}_{EM}}{\partial \vec{B}} = \vec{\nabla} \times \vec{B} - \frac{\partial \vec{E}}{\partial t} - 8\pi \vec{j}\label{eq:important-step-8}
+\end{align}
+\subsection*{Calculate $\displaystyle\frac{\partial \mathcal{L}_{EM}}{\displaystyle\partial \left(\frac{\partial \vec{B}}{\partial t}\right)}$}
+We find the partial derivative of $\mathcal{L}_{EM}$ with respect to $\displaystyle\frac{\partial \vec{B}}{\partial t}$:
+\begin{align}
+    \vec{E} \cdot \frac{\partial \vec{B}}{\partial t}\label{eq:important-step-9}
+\end{align}
+This gives:
+\begin{align}
+    \frac{\partial}{\displaystyle\partial \left(\frac{\partial \vec{B}}{\partial t}\right)} \left( \vec{E} \cdot \frac{\partial \vec{B}}{\partial t} \right) = \vec{E}\label{eq:important-step-10}
+\end{align}
+\subsection*{Calculate $\displaystyle\frac{\partial}{\partial t} \left(\frac{\displaystyle\partial \mathcal{L}_{EM}}{\displaystyle\partial \left(\frac{\partial \vec{B}}{\partial t}\right)} \right)$}
+Differentiate (\ref{eq:important-step-10}) once with respect to time:
+\begin{align}
+    \frac{\partial}{\partial t} \left( \vec{E} \right) = \frac{\partial \vec{E}}{\partial t}
+\end{align}
+\subsection*{Calculate $\vec{\nabla} \cdot \left( \frac{\displaystyle\partial \mathcal{L}_{EM}}{\displaystyle\partial (\vec{\nabla} \vec{B})} \right)$}
+Since $\mathcal{L}_{EM}$ does not explicitly depend on $\vec{\nabla} \vec{B}$, this term is zero:
+\begin{align}
+    \vec{\nabla} \cdot \left( \frac{\partial \mathcal{L}_{EM}}{\partial (\vec{\nabla} \vec{B})} \right) = 0
+\end{align}
+Substituting these results into (\ref{eq:euler-lagrange-for-fields}) for $\vec{B}$:
+\begin{align}
+    \vec{\nabla} \times \vec{B} - \frac{\partial \vec{E}}{\partial t} - 8\pi \vec{j} - \frac{\partial \vec{E}}{\partial t} = 0
+\end{align}
+This simplifies to:
+\begin{align}
+    \vec{\nabla} \times \vec{B} = \frac{\partial \vec{E}}{\partial t} + 8\pi \vec{j}
+\end{align}
+This derived equation is Ampère's law with Maxwell's correction, another of Maxwell's equations. It describes how a current and a changing electric field produce a magnetic field.
+
+The equations of motion derived from the electromagnetic Lagrangian density using the Euler-Lagrange equations are Maxwell's equations:
+\begin{enumerate}[label={(\alph*)}]
+    \item $\displaystyle \vec{\nabla} \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$~~~~~~~~~~~(Faraday's law of induction)
+    \item $\displaystyle \vec{\nabla} \times \vec{B} = \frac{\partial \vec{E}}{\partial t} + 8\pi \vec{j}$~~~(Ampère's law with Maxwell's correction)
+\end{enumerate}
+\bigskip\bigskip\hline\hline\bigskip
+\end{enumerate}

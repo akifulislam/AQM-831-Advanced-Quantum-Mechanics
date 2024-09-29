@@ -1,0 +1,196 @@
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} August 19 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 3 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 3} %\hfill \newline
+
+In this assignment, we shall \textit{derive} the time-dependent Schrödinger equation. 
+\bigskip\bigskip\hline\hline\bigskip
+Let us use the Hamiltonian for a single value particle given by,
+\begin{align*}
+    H(x, p_x, t) = \frac{1}{2m} p_x^2 + V(x, t)
+\end{align*}
+\begin{enumerate}
+    \item[(a)] Write down the Hamilton-Jacobi equation for this Hamiltonian, where $p_x$ is substituted by $\displaystyle\frac{\partial S}{\partial x}$.
+    \bigskip\bigskip\hline\hline\bigskip
+    \section*{Solution}
+    For a single particle, the Hamiltonian typically consists of a kinetic energy term and a potential energy term.
+    
+    Here, the Hamiltonian is given by:
+    \begin{align}
+        H(x, p_x, t) = \frac{1}{2m} p_x^2 + V(x, t)
+    \end{align}
+    where $p_x$ is the momentum conjugate to the coordinate $x$, $m$ is the mass of the particle, $V(x, t)$ is the potential energy, which may depend on both $x$ and $t$.
+
+    The Hamilton-Jacobi equation is given by:    
+    \begin{align}
+        H\left(x, \frac{\partial S}{\partial x}, t\right) + \frac{\partial S}{\partial t} = 0,\label{eq:hamilton-jacobi-def}
+    \end{align}
+    where $\displaystyle H\left(x, \frac{\partial S}{\partial x}, t\right)$ represents the Hamiltonian, with $p_x$ replaced by $\displaystyle\frac{\partial S}{\partial x}$. $\displaystyle\frac{\partial S}{\partial t}$ is the partial derivative of the action $S(x, t)$ with respect to time, known as Hamilton's Principal function.
+    
+    Now, substitute the given Hamiltonian $H(x, p_x, t)$ into (\ref{eq:hamilton-jacobi-def}), replacing $p_x$ with $\displaystyle\frac{\partial S}{\partial x}$:
+    \begin{align}
+        H\left(x, \frac{\partial S}{\partial x}, t\right) + \frac{\partial S}{\partial t} = \frac{1}{2m} \left(\frac{\partial S}{\partial x}\right)^2 + V(x, t) + \frac{\partial S}{\partial t} = 0
+    \end{align}
+    The equation we obtained is:
+    \begin{align}
+        \frac{1}{2m} \left(\frac{\partial S}{\partial x}\right)^2 + V(x, t) + \frac{\partial S}{\partial t} = 0,
+    \end{align}
+    where $\displaystyle\frac{1}{2m} \left(\frac{\partial S}{\partial x}\right)^2$ is the kinetic energy in the Hamiltonian, but expressed in terms of the action $S(x, t)$. $V(x, t)$ is still the potential energy as a function of position $x$ and time $t$. $\displaystyle\frac{\partial S}{\partial t}$ term accounts for the time evolution of the action $S(x, t)$.
+    
+    The equation derived is the Hamilton-Jacobi equation for the given Hamiltonian:
+    \begin{align}
+        \frac{1}{2m} \left(\frac{\partial S}{\partial x}\right)^2 + V(x, t) + \frac{\partial S}{\partial t} = 0\label{eq:hamilton-jacobi-for-given-hamiltonian}\qquad\text{(\bf Answer)}
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    \item[(b)] Substitute the complex action $\displaystyle S(x, t) = -i\hbar \ln \Psi(x, t)$ in (\ref{eq:hamilton-jacobi-for-given-hamiltonian}) and show that,
+    \begin{align*}
+        \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V\Psi^*\Psi - i\hbar \Psi^* \frac{\partial \Psi}{\partial t} = 0
+    \end{align*}
+    \bigskip\bigskip\hline\hline\bigskip
+    \section*{Solution}
+    We are given the complex action:
+    \begin{align}
+        S(x, t) = -i\hbar \ln \Psi(x, t)
+    \end{align}
+    The momentum $p_x$ in the Hamilton-Jacobi formulation (\ref{eq:hamilton-jacobi-for-given-hamiltonian}) is related to the derivative of the action $S(x, t)$ with respect to the position $x$. This is expressed as:
+    \begin{align}
+        p_x = \frac{\partial S}{\partial x}
+    \end{align}
+    Substituting the expression for $S(x, t)$ into this equation, we get:
+    \begin{align}
+        p_x &= \frac{\partial}{\partial x} \left[ -i\hbar \ln \Psi(x, t) \right] \notag\\
+        &= -i\hbar \frac{\partial}{\partial x} \left[ \ln \Psi(x, t) \right]\notag\\
+        &= -i\hbar\left(\frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial x}\right)\label{eq:momentum-in-terms-of-wavefunction}
+    \end{align}
+    Next, we compute the partial derivative of the action $S(x, t)$ with respect to time $t$. This is given by:
+    \begin{align}
+        \frac{\partial S}{\partial t} &= \frac{\partial}{\partial t} \left[ -i\hbar \ln \Psi(x, t) \right] \notag\\
+        &= -i\hbar \frac{\partial}{\partial t} \left[ \ln \Psi(x, t) \right] \notag\\
+        &= -i\hbar \left(\frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t}\right)\label{eq:action-diff-wrt-time}
+    \end{align}
+    We now substitute the expressions we derived for $\displaystyle\frac{\partial S}{\partial x}$ as (\ref{eq:momentum-in-terms-of-wavefunction}) and $\displaystyle\frac{\partial S}{\partial t}$ as (\ref{eq:action-diff-wrt-time}) into (\ref{eq:hamilton-jacobi-for-given-hamiltonian}):
+    
+    Substituting for $\displaystyle p_x = \frac{\partial S}{\partial x}$:
+    \begin{align}
+        \frac{1}{2m} \left( -i\hbar \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial x} \right)^2 + V(x, t) - i\hbar \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t} &= 0\notag\\
+        \frac{1}{2m} \left( -i\hbar \right)^2 \left( \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial x} \right)^2 + V(x, t) - i\hbar \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t} &= 0\notag\\
+        \frac{1}{2m} \cdot \hbar^2 \cdot \frac{1}{\Psi(x, t)^2} \left( \frac{\partial \Psi(x, t)}{\partial x} \right)^2 + V(x, t) - i\hbar \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t} &= 0\notag\\
+        \frac{\hbar^2}{2m} \frac{1}{\Psi(x, t)^2} \left( \frac{\partial \Psi(x, t)}{\partial x} \right)^2 + V(x, t) - i\hbar \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t} &= 0
+    \end{align}
+    To clear the denominators, multiply the entire equation by $\Psi^*(x, t)\Psi(x, t)$, where $\Psi^*(x, t)$ is the complex conjugate of $\Psi(x, t)$:
+    \begin{align}
+        \Psi^*(x, t)\Psi(x, t) \cdot \frac{\hbar^2}{2m} \frac{1}{\Psi(x, t)^2} \left( \frac{\partial \Psi(x, t)}{\partial x} \right)^2 + \Psi^*(x, t)\Psi(x, t) \cdot V(x, t) - i\hbar \Psi^*(x, t)\Psi(x, t) \cdot \frac{1}{\Psi(x, t)} \frac{\partial \Psi(x, t)}{\partial t} = 0
+    \end{align}
+    The first term simplifies as:
+    \begin{align}
+        \frac{\hbar^2}{2m} \Psi^*(x, t) \frac{\partial \Psi(x, t)}{\partial x} \frac{\partial \Psi(x, t)}{\partial x} = \frac{\hbar^2}{2m} \frac{\partial \Psi^*(x, t)}{\partial x} \frac{\partial \Psi(x, t)}{\partial x}\notag
+    \end{align}
+    The second term simplifies as:
+    \begin{align}
+        V(x, t) \Psi^*(x, t)\Psi(x, t) = V(x, t) \Psi^*\Psi\notag
+    \end{align}
+    The third term simplifies as:
+    \begin{align}
+        -i\hbar \Psi^*(x, t) \frac{\partial \Psi(x, t)}{\partial t}\notag
+    \end{align}
+    Thus, we obtain:
+    \begin{align}
+    \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V \Psi^*\Psi - i\hbar \Psi^* \frac{\partial \Psi}{\partial t} = 0\qquad\text{(\bf Showed)}\label{eq:schrodinger-complex-conjugate}
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    \item[(c)] Take the L.H.S. of the previous equation (\ref{eq:schrodinger-complex-conjugate}) as the Lagrangian $\tilde{L}$. Construct a new symmetric Lagrangian $\displaystyle L = \frac{(\tilde{L} + \tilde{L}^*)}{2}$, where $\tilde{L}^*$ is the complex conjugate of $\tilde{L}$.
+    \bigskip\bigskip\hline\hline\bigskip
+    \section*{Solution}
+    From the previous problem, the Lagrangian $\tilde{L}$ is derived from the left-hand side of (\ref{eq:schrodinger-complex-conjugate}):
+    \begin{align}
+        \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V\Psi^*\Psi - i\hbar \Psi^* \frac{\partial \Psi}{\partial t} = 0\notag
+    \end{align}
+    Thus, we define:
+    \begin{align}
+        \tilde{L} = \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V\Psi^*\Psi - i\hbar \Psi^* \frac{\partial \Psi}{\partial t}
+    \end{align}
+    To construct a symmetric and real Lagrangian, we take the average of $\tilde{L}$ and its complex conjugate $\tilde{L}^*$:
+    \begin{align}
+        L = \frac{(\tilde{L} + \tilde{L}^*)}{2}
+    \end{align}
+    First, let's compute the complex conjugate $\tilde{L}^*$. Recall that complex conjugation involves changing $i$ to $-i$ and swapping the terms $\Psi$ and $\Psi^*$:
+    \begin{align}
+        \tilde{L}^* = \frac{\hbar^2}{2m} \frac{\partial \Psi}{\partial x} \frac{\partial \Psi^*}{\partial x} + V\Psi\Psi^* + i\hbar \Psi \frac{\partial \Psi^*}{\partial t}
+    \end{align}
+    Now, construct the symmetric Lagrangian $L$ by averaging $\tilde{L}$ and $\tilde{L}^*$:
+    \begin{align}
+        L &= \frac{1}{2} \left[ \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V\Psi^*\Psi - i\hbar \Psi^* \frac{\partial \Psi}{\partial t} \right] + \frac{1}{2} \left[ \frac{\hbar^2}{2m} \frac{\partial \Psi}{\partial x} \frac{\partial \Psi^*}{\partial x} + V\Psi\Psi^* + i\hbar \Psi \frac{\partial \Psi^*}{\partial t} \right]\label{eq:symmetric-lagrangian}
+    \end{align}
+    The kinetic term $\displaystyle\frac{\hbar^2}{2m}$:
+    \begin{align}
+        \frac{1}{2} \left( \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + \frac{\partial \Psi}{\partial x} \frac{\partial \Psi^*}{\partial x} \right) = \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x}\notag
+    \end{align}
+    The potential energy term $V\Psi^*\Psi$:
+    \begin{align}
+        \frac{1}{2} \left( V\Psi^*\Psi + V\Psi\Psi^* \right) = V\Psi^*\Psi\notag
+    \end{align}
+    The time derivative term $\displaystyle-i\hbar \Psi^* \frac{\partial \Psi}{\partial t}$ and its conjugate $\displaystyle i\hbar \Psi \frac{\partial \Psi^*}{\partial t}$ cancel each other out:
+    \begin{align}
+        \frac{1}{2} \left( -i\hbar \Psi^* \frac{\partial \Psi}{\partial t} + i\hbar \Psi \frac{\partial \Psi^*}{\partial t} \right) = 0\notag
+    \end{align}
+    Thus, the final symmetric Lagrangian $L$ is:
+    \begin{align}
+        L = \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x} \frac{\partial \Psi}{\partial x} + V\Psi^*\Psi \qquad\text{(\bf Answer)}\notag
+    \end{align}
+    \bigskip\bigskip\hline\hline\bigskip
+    \item[(d)] Use the Euler-Lagrange equation twice, once by taking $\Psi$ and next taking its complex conjugate $\Psi^*$ as independent variables. Are they independent equations?
+    \bigskip\bigskip\hline\hline\bigskip
+    \section*{Solution}
+    The Euler-Lagrange equation for a field $\phi$ is:
+    \begin{align}
+        \frac{\partial L}{\partial \phi} - \frac{\partial}{\partial t} \left( \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \phi}{\partial t}\right)} \right) - \frac{\partial}{\partial x} \left( \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \phi}{\partial x}\right)} \right) = 0
+    \end{align}
+    First, take $\Psi$ as the independent variable:
+    
+    The partial derivative of $L$ with respect to $\Psi$:
+    \begin{align}
+        \frac{\partial L}{\partial \Psi} = V\Psi^*\notag
+    \end{align}
+    The partial derivative of $L$ with respect to $\displaystyle\frac{\partial \Psi}{\partial x}$:
+    \begin{align}
+        \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \Psi}{\partial x}\right)} = \frac{\hbar^2}{2m} \frac{\partial \Psi^*}{\partial x}\notag
+    \end{align}
+    Taking the derivative of this expression with respect to $x$:
+    \begin{align}
+        \frac{\partial}{\partial x} \left( \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \Psi}{\partial x}\right)} \right) = \frac{\hbar^2}{2m} \frac{\partial^2 \Psi^*}{\partial x^2}\notag
+    \end{align}
+    Thus, the Euler-Lagrange equation when $\Psi$ is the independent variable is:
+    \begin{align}
+        V\Psi^* - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi^*}{\partial x^2} = 0
+    \end{align}
+    Next, take $\Psi^*$ as the independent variable:
+    
+    The partial derivative of $L$ with respect to $\Psi^*$:
+    \begin{align}
+        \frac{\partial L}{\partial \Psi^*} = V\Psi\notag
+    \end{align}
+    The partial derivative of $L$ with respect to $\displaystyle\frac{\partial \Psi^*}{\partial x}$:
+    \begin{align}
+        \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \Psi^*}{\partial x}\right)} = \frac{\hbar^2}{2m} \frac{\partial \Psi}{\partial x}\notag
+    \end{align}
+    Taking the derivative of this expression with respect to $x$:
+    \begin{align}
+        \frac{\partial}{\partial x} \left( \frac{\partial L}{\displaystyle\partial \left(\frac{\partial \Psi^*}{\partial x}\right)} \right) = \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2}\notag
+    \end{align}
+    Thus, the Euler-Lagrange equation when $\Psi^*$ is the independent variable is:
+    \begin{align}
+        V\Psi - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} = 0
+    \end{align}
+    The two Euler-Lagrange equations derived are complex conjugates of each other:
+    \begin{align}
+        V\Psi^* - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi^*}{\partial x^2} = 0 \notag\\
+        V\Psi - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} = 0\notag
+    \end{align}
+    This means they describe the same physical situation. Therefore, they are not independent equations but are related through complex conjugation.$\qquad\text{(\bf Answer)}$
+\end{enumerate}

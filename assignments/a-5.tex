@@ -1,0 +1,516 @@
+\allowdisplaybreaks
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} August 21 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 5 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 5} %\hfill \newline
+\\
+\begin{enumerate}
+    \item Verify the following:
+        \begin{enumerate}[label={(\alph*)}]
+            \item $P[v]_F = [v]_E$
+            \item $P^{-1}[T]_E P = [T]_F$
+        \end{enumerate}
+        For the transformation
+        \begin{align*}
+            T \begin{pmatrix} a \ b \ c \end{pmatrix}^T &= \begin{pmatrix} -a \ b \ 0 \end{pmatrix}^T
+        \end{align*}
+        Basis set
+        \begin{align*}
+            E &= \left\{ \begin{pmatrix} 1 \ 0 \ 0 \end{pmatrix}^T, \begin{pmatrix} 0 \ 1 \ 0 \end{pmatrix}^T, \begin{pmatrix} 0 \ 0 \ 1 \end{pmatrix}^T \right\} \\
+            F &= \left\{ \begin{pmatrix} 1 \ 1 \ 0 \end{pmatrix}^T, \begin{pmatrix} 1 \ 0 \ 1 \end{pmatrix}^T, \begin{pmatrix} 0 \ 1 \ 1 \end{pmatrix}^T \right\}
+        \end{align*}
+    \bigskip\bigskip\hline\hline\bigskip
+    \textbf{Solution:}
+    First, let's calculate the transition matrix to change the basis from $E$ to $F$ and vice versa.
+    \begin{align}
+    P_{F\to E}&=\left[\begin{tabular}{ccc|ccc}
+     1&1&0&1&0&0 \\
+     1&0&1&0&1&0 \\
+     0&1&1&0&0&1
+    \end{tabular}\right]\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&1&0&1&0&0 \\
+     0&-1&1&-1&1&0 \\
+     0&1&1&0&0&1
+    \end{tabular}\right]\quad R_2\to R_2-R_1\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&1&0&1&0&0 \\
+     0&1&-1&1&-1&0 \\
+     0&1&1&0&0&1
+    \end{tabular}\right]\quad R_2\to R_2\times (-1)\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&0&1&0&1&0 \\
+     0&1&-1&1&-1&0 \\
+     0&1&1&0&0&1
+    \end{tabular}\right]\quad R_1\to R_1-R_2\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&0&1&0&1&0 \\
+     0&1&-1&1&-1&0 \\
+     0&0&2&-1&1&1
+    \end{tabular}\right]\quad R_3\to R_3-R_2\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&0&1&0&1&0 \\
+     0&1&-1&1&-1&0 \\[10pt]
+     0&0&1&$\displaystyle-\frac{1}{2}$&$\displaystyle\frac{1}{2}$&$\displaystyle\frac{1}{2}$
+    \end{tabular}\right]\quad R_3\to \frac{R_3}{2}\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&0&0&$\displaystyle\frac{1}{2}$&$\displaystyle\frac{1}{2}$&$\displaystyle-\frac{1}{2}$ \\[10pt]
+     0&1&-1&1&-1&0 \\[10pt]
+     0&0&1&$\displaystyle-\frac{1}{2}$&$\displaystyle\frac{1}{2}$&$\displaystyle\frac{1}{2}$
+    \end{tabular}\right]\quad R_1\to R_1-R_3\notag\\
+    &=\left[\begin{tabular}{ccc|ccc}
+     1&0&0&$\displaystyle\frac{1}{2}$&$\displaystyle\frac{1}{2}$&$\displaystyle-\frac{1}{2}$ \\[10pt]
+     0&1&0&$\displaystyle\frac{1}{2}$&$\displaystyle-\frac{1}{2}$&$\displaystyle\frac{1}{2}$ \\[10pt]
+     0&0&1&$\displaystyle-\frac{1}{2}$&$\displaystyle\frac{1}{2}$&$\displaystyle\frac{1}{2}$
+    \end{tabular}\right]\quad R_2\to R_2+R_3\notag\\
+    \therefore P_{F\to E}&=\begin{bmatrix}
+    \displaystyle\frac{1}{2}&\displaystyle\frac{1}{2}&\displaystyle-\frac{1}{2} \\[10pt]
+     \displaystyle\frac{1}{2}&\displaystyle-\frac{1}{2}&\displaystyle\frac{1}{2} \\[10pt]
+     \displaystyle-\frac{1}{2}&\displaystyle\frac{1}{2}&\displaystyle\frac{1}{2}
+    \end{bmatrix}
+\end{align}
+We can invert $P_{F\to E}$ to find $P_{E\to F}$:
+\begin{align}
+    P_{E\to F}=(P_{F\to E})^{-1}=\begin{bmatrix}
+       1&1&0\\
+       1&0&1\\
+       0&1&1
+    \end{bmatrix}
+\end{align}
+\begin{enumerate}[label={(\alph*)}]
+        \item  Verify $P[v]_F = [v]_E$.
+
+Let $\mathbf{v} = \begin{bmatrix} a \\ b \\ c \end{bmatrix}$ be a vector in the space.
+
+Compute $[v]_F$: Express $\mathbf{v}$ as a linear combination of the basis vectors in $F$:
+\begin{align}
+    \mathbf{v} = x_1 \mathbf{f}_1 + x_2 \mathbf{f}_2 + x_3 \mathbf{f}_3 = x_1 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} + x_2 \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} + x_3 \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}
+\end{align}
+Equating components, we get:
+\begin{align*}
+    a &= x_1 + x_2 \\
+    b &= x_1 + x_3 \\
+    c &= x_2 + x_3
+\end{align*}
+Solve for $x_1$, $x_2$, and $x_3$:
+\begin{align*}
+    x_1 &= \frac{a + b - c}{2} \\
+    x_2 &= \frac{a - b + c}{2} \\
+    x_3 &= \frac{-a + b + c}{2}
+\end{align*}
+Thus, $[v]_F$ is:
+\begin{align*}
+    [v]_F = \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    x_3
+    \end{bmatrix} = \begin{bmatrix}
+    \displaystyle\frac{a + b - c}{2} \\[10pt]
+    \displaystyle\frac{a - b + c}{2} \\[10pt]
+    \displaystyle\frac{-a + b + c}{2}
+    \end{bmatrix}
+\end{align*}
+Now, compute $P[v]_F$:
+\begin{align}
+    P_{F\to E}[v]_F &= \begin{bmatrix}
+    1&1&0\\
+       1&0&1\\
+       0&1&1
+    \end{bmatrix} \begin{bmatrix}
+    \displaystyle\frac{a + b - c}{2} \\[10pt]
+    \displaystyle\frac{a - b + c}{2} \\[10pt]
+    \displaystyle\frac{-a + b + c}{2}
+    \end{bmatrix} \notag\\
+    &= \begin{bmatrix}
+    \displaystyle1\cdot \frac{a + b - c}{2} + \displaystyle1\cdot \frac{a - b + c}{2} - \displaystyle0\cdot \frac{-a + b + c}{2} \\[10pt]
+    \displaystyle1\cdot \frac{a + b - c}{2} - \displaystyle0\cdot \frac{a - b + c}{2} + \displaystyle1\cdot \frac{-a + b + c}{2} \\[10pt]
+    \displaystyle0\cdot \frac{a + b - c}{2} +\displaystyle1 \cdot \frac{a - b + c}{2} + \displaystyle1 \cdot \frac{-a + b + c}{2}
+    \end{bmatrix} \notag\\
+    &= \begin{bmatrix}
+    a \\
+    b \\
+    c
+    \end{bmatrix}\label{eq:P[v]_E-eqn}
+\end{align}
+Compute $[v]_E$: Express $\mathbf{v}$ as a linear combination of the basis vectors in $E$:
+\begin{align}
+    \mathbf{v} = x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + x_3 \mathbf{e}_3 = x_1 \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+\end{align}
+Equating components, we get:
+\begin{align*}
+    a &= x_1 \\
+    b &= x_2 \\
+    c &= x_3
+\end{align*}
+Thus, $[v]_F$ is:
+\begin{align}
+    [v]_F = \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    x_3
+    \end{bmatrix} = \begin{bmatrix}
+    a \\
+    b \\
+    c \end{bmatrix}\label{eq:[v]_F-eqn}
+\end{align}
+Comparing (\ref{eq:P[v]_E-eqn}) and (\ref{eq:[v]_F-eqn}), we see that both sides match. $\qquad\text{(\bf Verified)}$
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Consider the left-hand side of the equation we want to verify. $\displaystyle P^{-1}[T]_E P$. 
+    
+    \textbf{I did not get to complete this. I got some faulty answers. I want some hints on this one}. 
+    \section*{Solution}
+    We first apply the transformation $T$ to the basis vectors to evaluate $T_E$ and $T_F$. For basis $E$, let $\mathbf{e}_1 = (1,0,0)$, $\mathbf{e}_2 = (0,1,0)$ and $\mathbf{e}_3 = (0,0,1)$.
+    \begin{align*}
+        T \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} &= \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix}\\
+        T \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} &= \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\\
+        T \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} &= \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+    \end{align*}
+    To express $T \mathbf{e}_1 = \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix}$ in terms of $E$, find $c_1$, $c_2$ and $c_3$ such that:
+    \begin{align*}
+        \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} = c_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + c_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + c_3 \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+    \end{align*}
+    This results in:
+    \begin{align*}
+        \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}
+    \end{align*}
+    Thus, $T \mathbf{e}_1 = -1 \cdot \mathbf{e}_1 - 0 \cdot \mathbf{e}_2 + 0 \cdot \mathbf{e}_3$.
+    
+    To express $T \mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}$ in terms of $E$, find $c_1$, $c_2$ and $c_3$ such that:
+    \begin{align*}
+        \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = c_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + c_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + c_3 \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+    \end{align*}
+    This results in:
+    \begin{align*}
+        \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}
+    \end{align*}
+    Thus, $T \mathbf{e}_3 = 0 \cdot \mathbf{e}_1 + 0 \cdot \mathbf{e}_2 + 0 \cdot \mathbf{e}_3$.
+    
+    To express $T \mathbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$ in terms of $E$, find $c_1$, $c_2$ and $c_3$ such that:
+    \begin{align*}
+        \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} = c_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + c_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + c_3 \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+    \end{align*}
+    This results in:
+    \begin{align*}
+        \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}
+    \end{align*}
+    Thus, $T \mathbf{e}_3 = 0 \cdot \mathbf{e}_1 + 0 \cdot \mathbf{e}_2 + 0 \cdot \mathbf{e}_3$.
+    
+    The matrix representation of $T$ with respect to the basis $E$ is:
+    \begin{align}
+        [T]_E = \begin{pmatrix}
+        -1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0
+        \end{pmatrix}
+    \end{align}
+    Repeat the same for the $F$ basis:
+    \begin{align*}
+        T \mathbf{f}_1 &= 0 \cdot \mathbf{f}_1 + (-1) \cdot \mathbf{f}_2 + 1 \cdot \mathbf{f}_3\\
+        T \mathbf{f}_2 &= \left(-\frac{1}{2}\right) \cdot \mathbf{f}_1 + \left(-\frac{1}{2}\right) \cdot \mathbf{f}_2 + \left(\frac{1}{2}\right) \cdot \mathbf{f}_3\\
+        T \mathbf{f}_3 &= 1 \cdot \mathbf{f}_1 + 0 \cdot \mathbf{f}_2 + (-1) \cdot \mathbf{f}_3
+    \end{align*}
+    The matrix representation of $T$ with respect to the basis $F$ is:
+    \begin{align}
+        [T]_F = \begin{bmatrix}
+        0 & -1 & 1 \\[10pt]
+        \displaystyle -\frac{1}{2} & \displaystyle-\frac{1}{2} & \displaystyle\frac{1}{2} \\[10pt]
+        1 & 0 & -1
+        \end{bmatrix}
+    \end{align}
+    Evaluate the left-hand side:
+    \begin{align*}
+        P^{-1}[T]_EP&=\begin{bmatrix}
+        \displaystyle\frac{1}{2}&\displaystyle\frac{1}{2}&\displaystyle-\frac{1}{2} \\[10pt]
+         \displaystyle\frac{1}{2}&\displaystyle-\frac{1}{2}&\displaystyle\frac{1}{2} \\[10pt]
+         \displaystyle-\frac{1}{2}&\displaystyle\frac{1}{2}&\displaystyle\frac{1}{2}
+                \end{bmatrix}\begin{bmatrix}
+            -1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 0
+            \end{bmatrix}\begin{bmatrix}
+           1&1&0\\
+           1&0&1\\
+           0&1&1
+        \end{bmatrix}\\
+        &=\begin{bmatrix}
+            0 & \displaystyle-\frac{1}{2} & \displaystyle\frac{1}{2}\\[10pt]
+            -1 & -\displaystyle\frac{1}{2} & -\displaystyle\frac{1}{2}\\[10pt]
+            1 & \displaystyle\frac{1}{2} & \displaystyle\frac{1}{2}
+        \end{bmatrix}\\
+        \neq [T]_F
+    \end{align*}
+    \textbf{I think I did some wrong calculation above somewhere. I want some feedback here. Thank you.}
+    \end{enumerate}
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Diagonalize the matrix
+        \begin{align}
+            A &= \left(
+            \left(2 \ - i \ 0\right)^T 
+            \left(i \ 2 \ 0\right)^T
+            \left(0 \ 0 \ 5i\right)^T
+            \right)\notag
+        \end{align}
+    \section*{Solution}
+    We need to find a matrix $P$ of eigenvectors and a diagonal matrix $D$ such that:
+\begin{align*}
+    A = PDP^{-1}.
+\end{align*}
+To find the Eigenvalues, we first solve the characteristic polynomial $\displaystyle\det(A - \lambda I) = 0$:
+
+Here, $\lambda$ represents the eigenvalues, and $I$ is the identity matrix. First, compute $A - \lambda I$:
+\begin{align*}
+    A - \lambda I &= \begin{bmatrix}
+    2 - \lambda & i & 0 \\
+    -i & 2 - \lambda & 0 \\
+    0 & 0 & 5i - \lambda
+    \end{bmatrix}
+\end{align*}
+Next, compute the determinant:
+\begin{align}
+    \det(A - \lambda I) &= \det\left(\begin{bmatrix}
+    2 - \lambda & i & 0 \\
+    -i & 2 - \lambda & 0 \\
+    0 & 0 & 5i - \lambda
+    \end{bmatrix}\right) \notag\\
+    &= (5i - \lambda)\begin{bmatrix}
+    2 - \lambda & i \\
+    -i & 2 - \lambda
+    \end{bmatrix}\notag
+\end{align}
+Now, compute the determinant of the $2 \times 2$ matrix:
+\begin{align*}
+    \det\left(\begin{bmatrix}
+    2 - \lambda & -i \\
+    i & 2 - \lambda
+    \end{bmatrix}\right) &= (2 - \lambda)(2 - \lambda) - (-i)(i) \\
+    &= (2 - \lambda)^2 - (-1) \\
+    &= (2 - \lambda)^2 + 1 \\
+    &= \lambda^2 - 4\lambda + 3
+\end{align*}
+Thus, the characteristic equation is:
+\begin{align}
+    \det(A - \lambda I) &= (5i - \lambda)(\lambda^2 - 4\lambda + 3) = 0
+\end{align}
+The characteristic equation gives us three eigenvalues. Solve:
+
+From $5i - \lambda = 0$:
+\begin{align}
+    \lambda_1 = 5i\notag
+\end{align}
+$\lambda^2 - 4\lambda + 3 = 0$:
+\begin{align}
+    \lambda^2+3\lambda-\lambda+3&=0\notag\\
+    \left(\lambda-3\right)\left(\lambda-1\right)&=0\notag\\
+    \therefore\lambda_2=1,\quad\lambda_3&=3
+\end{align}
+So the eigenvalues are:
+\begin{align}
+    \lambda_1 = 5i, \quad \lambda_2 = 3, \quad \lambda_3 = 1\notag
+\end{align}
+For each eigenvalue $\lambda_i$, solve the equation:
+\begin{align}
+    (A - \lambda_i I)\mathbf{v}_i = 0\notag
+\end{align}
+Eigenvector for $\lambda_1 = 5i$
+Substitute $\lambda_1 = 5i$:
+\begin{align}
+    A - 5iI &= \begin{bmatrix}
+    2 - 5i & i & 0 \\
+    -i & 2 - 5i & 0 \\
+    0 & 0 & 0
+    \end{bmatrix}\notag
+\end{align}
+The equation $\displaystyle (A - 5iI)\mathbf{v}=0$ becomes:
+\begin{align*}
+    \begin{bmatrix}
+        2 - 5i & -i & 0 \\
+        i & 2 - 5i & 0 \\
+        0 & 0 & 0
+    \end{bmatrix} \begin{bmatrix}
+        v_1 \\
+        v_2 \\
+        v_3
+    \end{bmatrix} = \begin{bmatrix}
+        (2 - 5i)v_1 - iv_2 \\
+        iv_1 + (2 - 5i)v_2 \\
+        0
+    \end{bmatrix} = \begin{bmatrix}
+        0 \\
+        0 \\
+        0
+    \end{bmatrix}
+\end{align*}
+This results in the system of equations:
+\begin{align*}
+    (2 - 5i)v_1 - iv_2 &= 0 \\
+    iv_1 + (2 - 5i)v_2 &= 0 \notag\\
+    0v_3 &= 0
+\end{align*}
+The third equation,  0 = 0, is trivial and provides no new information. The first two equations are dependent, meaning that one is a scalar multiple of the other. They both reduce to:
+\begin{align*}
+    (2 - 5i)v_1 = iv_2
+\end{align*}
+This equation shows that $v_1$ and $v_2$ are not independent. Any vector of the form $\displaystyle\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}$ where $v_1$ and $v_2$ satisfy the above relation is a valid eigenvector.
+
+However, from the third row of the matrix $A - 5iI$, we observe that $v_3$ is unconstrained and can be any scalar value. In the simplest case, we can set  $v_1 = 0$, $v_2 = 0$, and $v_3$ to any non-zero scalar (typically 1 for normalization). 
+        
+So, the eigenvector corresponding to $\lambda_1 = 5i$ is:
+\begin{align}
+    \mathbf{v}_1 = \begin{bmatrix}
+    0 \\
+    0 \\
+    1
+\end{bmatrix}
+\end{align}
+Substitute $\lambda_3 = 1$:
+\begin{align*}
+    A - 1I &= \begin{bmatrix}
+    2-1 & i & 0 \\
+    -i & 2-1 & 0 \\
+    0 & 0 & 5i - 1
+    \end{bmatrix} = \begin{bmatrix}
+    1 & i & 0 \\
+    -i & 1 & 0 \\
+    0 & 0 & 5i-1
+    \end{bmatrix}
+\end{align*}
+The equation $\displaystyle (A - 1I)\mathbf{v}=0$ becomes:
+\begin{align*}
+    (A - 1I)\mathbf{v}_2 = \begin{bmatrix}
+    1 & i & 0 \\
+    -i & 1 & 0 \\
+    0 & 0 & 5i - 1
+    \end{bmatrix} \begin{bmatrix}
+    v_1 \\
+    v_2 \\
+    v_3
+    \end{bmatrix} = \begin{bmatrix}
+    v_1-iv_2 \\
+    iv_1+v_2 \\
+    (5i - 1)v_3
+    \end{bmatrix} = \begin{bmatrix}
+    0 \\
+    0 \\
+    0
+    \end{bmatrix}
+\end{align*}
+This gives the equations:
+\begin{align*}
+    v_1 &= iv_2 \\
+    iv_1 &= -v_2 \\
+    (5i - 1)v_3 &= 0
+\end{align*}
+So the eigenvector corresponding to $\lambda_i=1$ is:
+\begin{align}
+    \mathbf{v}_2 = \begin{bmatrix}
+    -i \\
+    1 \\
+    0
+    \end{bmatrix}
+\end{align}
+Substitute $\lambda_3 = 3$:
+\begin{align*}
+    A - 3I &= \begin{bmatrix}
+    2-3 & i & 0 \\
+    -i & 2-3 & 0 \\
+    0 & 0 & 5i - 3
+    \end{bmatrix} = \begin{bmatrix}
+    -1 & i & 0 \\
+    -i & -1 & 0 \\
+    0 & 0 & 5i-3
+    \end{bmatrix}
+\end{align*}
+The equation $\displaystyle (A - 3I)\mathbf{v}=0$ becomes:
+\begin{align*}
+    (A - 3I)\mathbf{v}_3 = \begin{bmatrix}
+    -1 & i & 0 \\
+    -i & -1 & 0 \\
+    0 & 0 & 5i - 3
+    \end{bmatrix} \begin{bmatrix}
+    v_1 \\
+    v_2 \\
+    v_3
+    \end{bmatrix} = \begin{bmatrix}
+    -v_1-iv_2 \\
+    iv_1-v_2 \\
+    (5i - 3)v_3
+    \end{bmatrix} = \begin{bmatrix}
+    0 \\
+    0 \\
+    0
+    \end{bmatrix}
+\end{align*}
+This gives the equations:
+\begin{align*}
+    v_1 &= - iv_2 \\
+    iv_1 &= v_2 \\
+    (5i - 3)v_3 &= 0
+\end{align*}
+So the eigenvector corresponding to $\lambda_i=3$ is:
+\begin{align}
+    \mathbf{v}_3 = \begin{bmatrix}
+    i \\
+    1 \\
+    0
+    \end{bmatrix}
+\end{align}
+We can now construct the diagonal matrix $D$, containing the eigenvalues $\lambda_1 = 5i$, $\lambda_2 = 1$, and $\lambda_3 = 3$ and the matrix $P$ of associated eigenvectors:
+\begin{align}
+    D = \begin{pmatrix}
+    5i & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 3
+    \end{pmatrix}\label{eq:D-eqn-diag}
+\end{align}
+The matrix $P$ is formed by placing the eigenvectors as columns:
+\begin{align}
+    P = \begin{pmatrix}
+    0 & -i & i \\
+    0 & 1 & 1 \\
+    1 & 0 & 0
+    \end{pmatrix}\label{eq:P-eqn-diag}
+\end{align}
+The inverse of which is:
+\begin{align}
+    P^{-1} = \begin{pmatrix}
+    0 & 0 & 1 \\[5pt]
+    \displaystyle\frac{i}{2} & \displaystyle\frac{1}{2} & 0 \\[8pt]
+    \displaystyle-\frac{i}{2} & \displaystyle\frac{1}{2} & 0
+    \end{pmatrix}
+\end{align}
+We just found $P$ (\ref{eq:P-eqn-diag}) and $D$ (\ref{eq:D-eqn-diag}) matrices in such a way that $\displaystyle A &= PDP^{-1}$. This diagonalizes $A$. We can verify this claim:
+\begin{align*}
+    PDP^{-1}&=\begin{pmatrix}
+    0 & -i & i \\
+    0 & 1 & 1 \\
+    1 & 0 & 0
+    \end{pmatrix}\begin{pmatrix}
+    5i & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 3
+    \end{pmatrix}\begin{pmatrix}
+    0 & 0 & 1 \\[5pt]
+    \displaystyle\frac{i}{2} & \displaystyle\frac{1}{2} & 0 \\[8pt]
+    \displaystyle-\frac{i}{2} & \displaystyle\frac{1}{2} & 0
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+    0 & -i & 3i \\[5pt]
+    0 & 1 & 3 \\[8pt]
+    5i & 0 & 0
+    \end{pmatrix}\begin{pmatrix}
+    0 & 0 & 1 \\[5pt]
+    \displaystyle\frac{i}{2} & \displaystyle\frac{1}{2} & 0 \\[8pt]
+    \displaystyle-\frac{i}{2} & \displaystyle\frac{1}{2} & 0
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+    2 & i & 0 \\[5pt]
+    -i & 2 & 0 \\[8pt]
+    0 & 0 & 5i
+    \end{pmatrix}=A.\qquad\text{(\bf Verified)}
+\end{align*}

@@ -1,0 +1,154 @@
+\allowdisplaybreaks
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} September 4, 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 7 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 7} %\hfill \newline
+\\
+Prove that the following limit exists:
+\begin{align*}
+    \lim_{m \to p} \frac{\cos(m\pi) J_m - J_{-m}}{\sin m\pi}, \quad p \in \mathbb{Z}.
+\end{align*}
+\bigskip\bigskip\hline\hline\bigskip
+\section*{Solution}
+In the given expression:
+\begin{align*}
+    \frac{\cos(m\pi) J_m - J_{-m}}{\sin m\pi}.
+\end{align*}
+$\displaystyle J_m$ and $\displaystyle J_{-m}$ are Bessel functions of the first kind, and $\displaystyle m$ and $\displaystyle p$ denotes the orders of the equations.
+
+Bessel functions of the first kind $\displaystyle J_m(x)$ satisfy the following symmetry property:
+\begin{align}
+    J_{-m}(x) &= (-1)^m J_m(x).\label{eq:bessel-symmetry-property}
+\end{align}
+Using (\ref{eq:bessel-symmetry-property}), we can rewrite $\displaystyle J_{-m}$ in terms of $\displaystyle J_m$:
+\begin{align*}
+    J_{-m} &= (-1)^m J_m.
+\end{align*}
+Substituting the above expression into the limit, we get:
+\begin{align*}
+    \lim_{m \to p} \frac{\cos(m\pi) J_m - (-1)^m J_m}{\sin m\pi}&=\lim_{m \to p} \frac{J_m \left(\cos(m\pi) - (-1)^m\right)}{\sin m\pi}.
+\end{align*}
+Now, observe that, so:
+\begin{align*}
+    \cos(m\pi) - (-1)^m &= (-1)^m - (-1)^m = 0.
+\end{align*}
+This implies that the numerator is 0, and hence, the limit reduces to:
+\begin{align*}
+    \lim_{m \to p} \frac{0}{\sin m\pi}=0.
+\end{align*}
+Thus, the limit exists and is equal to zero.
+\bigskip\bigskip\hline\hline\bigskip
+\begin{enumerate}
+    \item Prove that:
+    \begin{align*}
+        J_{n-1} + J_{n+1} = \frac{2n}{x} J_n.
+    \end{align*}
+\bigskip\bigskip\hline\hline\bigskip
+\section*{Solution}
+We utilize the Bessel function of the first kind to solve the identities in this question. But first, we must find the two recurrence relation the Bessel function satisfy.
+
+First, start with the Bessel function of the first kind of order $n$:
+\begin{align}
+    J_n=\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\label{eq:bessel-function-first-order}
+\end{align}
+Differentiating with respect to $x$, we get
+\begin{align}
+    J^{\prime}_n&=\dfrac{d}{dx}\left\{\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\right\}\notag\\
+    &=n\sum_{r=0}^\infty\frac{(-1)^r(n+2r)}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r-1}\cdot\frac{1}{2}\notag\\
+    xJ^{\prime}_n&=n\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r} + x\sum_{r=0}^\infty\frac{(-1)^r\cdot2r}{2r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r-1}\notag\\
+    &=nJ_n + x\sum_{r=0}^\infty\frac{(-1)^r}{(r-1)!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r-1}\notag\\
+    &=nJ_n+x\sum_{s=0}^\infty\frac{(-1)^{s+1}}{s!\Gamma(n+s+2)}\left(\frac{x}{2}\right)^{n+2s-1}\qquad[\text{Use  }r-1=s]\notag\\
+    &=nJ_n-x\sum_{s=0}^\infty\frac{(-1)^s}{s!\Gamma[(n+1)+(s+1)]}\left(\frac{x}{2}\right)^{(n+1)+2s}\notag\\
+    xJ^{\prime}_n&=nJ_n-xJ_{n+1}\label{eq:first-recurrence}
+\end{align}
+We follow a similar route to find the second recurrence relation:
+\begin{align}
+    J^{\prime}_n&=\dfrac{d}{dx}\left\{\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\right\}\notag\\
+    &=\sum_{r=0}^\infty\frac{(-1)^r(n+2r)}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r-1}\frac{1}{2}\notag\\
+    &=\sum_{r=0}^\infty\frac{(-1)^r(n+2r)}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\notag\notag\\
+    &=\sum_{r=0}^\infty\frac{(-1)^r[(2n+2r)-n]}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\notag\\
+    &=\sum_{r=0}^\infty\frac{(-1)^r(2n+2r)}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}-n\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}\notag\\
+    &=\sum_{r=0}^\infty\frac{(-1)^r\cdot2}{r!\Gamma(n+r+1)}\left(\frac{x}{2}\right)^{n+2r}-nJ_n\notag\\
+    &=x\sum_{r=0}^\infty\frac{(-1)^r}{r!\Gamma[(s-1)+r+1]}\left(\frac{x}{2}\right)^{(s-1)+2r}-nJ_n\qquad[\text{Use  }n=s-1].\notag\\
+    xJ^{\prime}_n&=xJ_{n-1}-nJ_n.\label{eq:second-reccurence}
+\end{align}
+Equations (\ref{eq:first-recurrence}) and (\ref{eq:second-reccurence}) are the desired recurrence relations (\ref{eq:bessel-function-first-order}) satisfy.
+
+Subtract (\ref{eq:second-reccurence}) from (\ref{eq:first-recurrence}) to obtain:
+\begin{align}
+    0& = 2nJ_n - xJ_{n+1} - xJ_{n-1}\notag\\
+    2nJ_n&=x\left(J_{n-1}+J_{n+1}\right)\notag\\
+    \therefore J_{n-1} + J_{n+1} &= \frac{2n}{x} J_n\qquad\text{(\bf Proved)}
+\end{align}
+\bigskip\bigskip\hline\hline\bigskip
+\item Prove that:
+\begin{align*}
+    J_n' = \frac{1}{2} \left(J_{n-1} - J_{n+1}\right),
+\end{align*}
+\bigskip\bigskip\hline\hline\bigskip
+\section*{Solution}
+Subtract (\ref{eq:first-recurrence}) from (\ref{eq:second-reccurence}) to obtain:
+\begin{align}
+    2xJ^{\prime}_n & = - xJ_{n+1} + xJ_{n-1}\notag\\
+    \therefore J_n' &= \frac{1}{2} \left(J_{n-1} - J_{n+1}\right)\qquad\text{(\bf Proved)}
+\end{align}
+\bigskip\bigskip\hline\hline\bigskip
+\item Prove that:
+\begin{align*}
+    \frac{d}{dx}\left( x J_n J_{n+1} \right) = x \left( J_n^2 - J_{n+1}^2 \right).
+\end{align*}
+\bigskip\bigskip\hline\hline\bigskip
+\section*{Solution}
+We will apply the product rule of differentiation, which states that for any functions $\displaystyle u(x)$ and $\displaystyle v(x)$,
+\begin{align}
+    \frac{d}{dx} \left( u(x) v(x) \right) = u'(x) v(x) + u(x) v'(x).
+\end{align}
+Here, $\displaystyle u(x) = x$ and $\displaystyle v(x) = J_n(x) J_{n+1}(x)$.
+
+Using the product rule:
+\begin{align}
+    \frac{d}{dx}\left( x J_n(x) J_{n+1}(x) \right) &= \frac{d}{dx}(x) \cdot J_n(x) J_{n+1}(x) + x \cdot \frac{d}{dx}\bigg[J_n(x) J_{n+1}(x)\bigg]\notag\\
+    &= J_n(x) J_{n+1}(x) + x \cdot \frac{d}{dx}\bigg[J_n(x) J_{n+1}(x)\bigg]\notag\\[3pt]
+    &= J_n(x) J_{n+1}(x) + x\bigg[J_n'(x) J_{n+1}(x) + J_n(x) J_{n+1}'(x)\bigg]\notag\\
+    &= J_n(x) J_{n+1}(x) + xJ_n'(x) J_{n+1}(x) + J_n(x)x J_{n+1}'(x)\notag\\
+    &= J_n(x) J_{n+1}(x) + J_{n+1}(x)\underbrace{\bigg[nJ_n(x)-xJ_{n+1}(x)\bigg]}_{(\ref{eq:first-recurrence})} + J_n(x)\underbrace{\bigg[-(n+1)J_{n+1}(x) + xJ_n(x)\bigg]}_{(\ref{eq:second-reccurence})\text{ with }n^{\prime} =\,n+1} \notag\\
+    &= J_n(x) J_{n+1}(x) + nJ_n(x)J_{n+1}(x) - xJ_{n+1}^2 - (n+1)J_n(x)J_{n+1}(x) + xJ_n^2(x)\notag\\[5pt]
+    &= J_n(x) J_{n+1}(x) + nJ_n(x)J_{n+1}(x) - xJ_{n+1}^2 - nJ_n(x)J_{n+1}(x) - J_n(x)J_{n+1}(x) + xJ_n^2(x)\notag\\[5pt]
+    &= x \bigg[J_n^2(x) - J_{n+1}^2(x) \bigg].\qquad\text{(\bf Proved)}
+\end{align}
+\bigskip\bigskip\hline\hline\bigskip
+\item Prove that:
+\begin{align*}
+    J_{\frac{1}{2}}(x) = \sqrt{\frac{2}{\pi x}} \sin x,
+\end{align*}
+\bigskip\bigskip\hline\hline\bigskip
+\section*{Solution}
+The Bessel function of the first kind of order $\displaystyle \frac{1}{2}$ is given by the series representation (\ref{eq:bessel-function-first-order}):
+\begin{align}
+    J_{\frac{1}{2}}&=\sum_{r=0}^\infty\frac{(-1)^r}{\displaystyle r!\Gamma\left(\frac{1}{2}+r+1\right)}\left(\frac{x}{2}\right)^{\frac{1}{2}+2r}\notag\\
+    \left(\frac{x}{2}\right)^\frac{1}{2}J_{\frac{1}{2}}&=\sum_{r=0}^\infty\frac{(-1)^r}{\displaystyle r!\Gamma\left(\frac{3}{2}+r\right)}\left(\frac{x}{2}\right)^{2r+1}
+\end{align}
+We use the property of the Gamma function for half-integer values:
+\begin{align}
+    \Gamma\left(\frac{3}{2} + r\right) &= \Gamma\left(r + \frac{3}{2}\right) = \left(r+\dfrac12\right)\left(r-\dfrac12\right) \cdots \dfrac12 \sqrt{\pi} \notag\\
+    &= \dfrac{(2r+1)(2r-1)\cdots 3 \cdot 1}{2^{r+1}} \sqrt{\pi}\notag\\
+    &= \dfrac{(2r+1)!}{2^{2r+1}r!} \sqrt{\pi}.
+\end{align}
+Substituting this into the series:
+\begin{align}
+    J_{\frac{1}{2}}(x)\left(\frac{x}{2}\right)^{\frac{1}{2}} &= \frac{1}{\sqrt{\pi}}\sum_{k=0}^{\infty} \frac{(-1)^r 2^{2r+1}r!}{r!(2r + 1)!} \left(\frac{x}{2}\right)^{2r+1}\notag\\
+    &=\frac{r!2^{2r+1}}{\sqrt{\pi}r!}\left(\sum_{r=0}^{\infty} \frac{(-1)^r}{(2r+1)!} x^{2r+1}\right)\left(\frac{1}{2}\right)^{{2r+1}}\notag\\
+    &=\left(\frac{2}{x}\right)^{\frac{1}{2}}\frac{1}{\sqrt{\pi}r!}\left(\sum_{r=0}^{\infty} \frac{(-1)^r}{(2r+1)!} x^{2r+1}\right)\notag\\
+    &=\sqrt{\frac{2}{\pi x}} \sin x.\qquad\text{(\bf Proved)}
+\end{align}
+We used the series representation of $\displaystyle \sin x$ given by:
+\begin{align*}
+    \sin x &= \sum_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} x^{2k+1}.
+\end{align*}
+\end{enumerate}

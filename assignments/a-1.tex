@@ -1,0 +1,155 @@
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} July 13 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 1 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 1} %\hfill \newline
+The D'Alembert’s principle dictates that constraint forces do no (virtual) work, i.e.,
+\begin{align*}
+    \sum \vec{F}_i^C \cdot \delta \vec{r}_i = 0
+\end{align*}
+leads to the Euler-Lagrange equations. Here $i$ indicates the $i$th particle. Let us derive it as follows. From Euclidean coordinates $\{\vec{r}_1, \ldots, \vec{r}_N\} = \{x_{11}, x_{12}, x_{13}, x_{21}, \ldots, x_{N3}\}$ along with $K$ holonomic constraints\\ $\displaystyle f_I(\vec{r}_1, \ldots, \vec{r}_N) = 0; \, I = 1, \ldots, K$.
+
+Assume a set of generalized coordinates $\displaystyle(q_1, \ldots, q_{3N-K})$ on the configuration space, i.e., the space on which the particle moves.
+\bigskip
+    \hline\hline
+\begin{enumerate}
+    \item If the work done by the non-constraint forces is to be written in terms of the generalized coordinates
+    \begin{align*}
+        \sum\vec{F}_i^{\text{ext}} \cdot \delta \vec{r}_i = \sum Q_j \delta q_j\label{d-alembert-principle}
+    \end{align*}
+    Here, $Q_j$ is called the generalized force. What should be the defining equation for $Q_j$ for the above relation to hold true?\bigskip
+    \hline\hline\bigskip
+    \textbf{Solution}: Consider the virtual work done by non-constraint forces:
+    \begin{align}
+        dW=\sum\vec{F}_i^{\text{ext}}\cdot\delta \vec{r}_i;\label{virtual-work-done}
+    \end{align}
+    where $\vec{F}_i^{\text{ext}}$ are the non-constraint forces and $\delta\vec{r}_i$ is the infinitesimal virtual displacement.\\
+    The virtual displacement terms take the following form (using the chain rule) in generalized coordinates:
+    \begin{align}
+        \delta\vec{r}_i&=\frac{\partial \vec{r}_1}{\partial q_1}\delta q_1+\frac{\partial \vec{r}_2}{\partial q_2}\delta q_2+\ldots\,\ldots+\frac{\partial \vec{r}_n}{\partial q_n}\delta q_n\notag\\[3pt]
+        &=\sum_{i,j}^n \frac{\partial \vec{r}_i}{\partial q_j}\delta{q}_j\label{virtual-disp}
+    \end{align}
+    Isolate the RHS of eq.(\ref{virtual-work-done}):
+    \begin{align}
+        \sum_i\vec{F}_i^{\text{ext}}\cdot\delta\vec{r}_i&=\sum_i\vec{F}_i^{\text{ext}}\cdot\sum_j^n \frac{\partial \vec{r}_i}{\partial q_j}\delta{q}_j\notag\\
+        &=\sum_j^n\left(\sum_i\vec{F}_i^{\text{ext}}\cdot\frac{\partial \vec{r}_i}{\partial q_j}\right)\delta q_j\notag\\[7pt]
+        &=\sum_jQ_j\delta q_j\label{general-force};
+    \end{align}
+    where $Q_j$ is the \textit{generalized force} with a defining equation as follows:
+    \begin{align*}
+    Q_j = \sum_j\vec{F}_i^{\text{ext}}\cdot \frac{\partial \vec{r}_i}{\partial q_j}.
+    \end{align*}
+    This form must be followed in order to satisfy D'Alembert's principle.\bigskip
+    \hline\hline\bigskip
+    %-------------------------------------------------
+    %-------------------------------------------------
+    \item Use
+    \begin{align*}
+    \frac{d}{dt} \left( \frac{\partial \vec{r}_i}{\partial q_j} \right) = \frac{\partial \vec{v}_i}{\partial q_j}
+    \end{align*}
+    to show that
+    \begin{align*}
+    \sum \vec{p}_i \cdot \dot{\vec{r}}_i = \sum_j\left[ \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j} \right] \delta q_j
+    \end{align*}
+    where $\displaystyle T = \frac{1}{2} \sum_i m_i v_i^2$ is the kinetic energy of the system.\\\bigskip
+    \hline\hline\bigskip
+     \textbf{Solution}: 
+     We can write the Euclidean velocity in the generalized coordinates (utilizing the chain rule) as:
+    \begin{align}
+        \vec{v}_i=\frac{d\vec{r}_i}{dt}&=\frac{\partial \vec{r}_1}{\partial q_1}\frac{\partial q_1}{\partial t}+\frac{\partial \vec{r}_2}{\partial q_2}\frac{\partial q_2}{\partial t}+\ldots\,\ldots+\frac{\partial \vec{r}_n}{\partial q_n}\frac{\partial q_n}{\partial t}+\frac{\partial \vec{r}_i}{\partial t}\notag\\
+        &=\sum_k^n \frac{\partial \vec{r}_i}{\partial q_k}\dot{q}_k+\frac{\partial \vec{r}_i}{\partial t};\label{euclid-vel-to-genr-vel}
+    \end{align}
+    where $\dot{q}_k$ is the \textit{generalized velocity}. For holonomic constraints, the second term vanishes. \\
+    Substitute eq.(\ref{euclid-vel-to-genr-vel}) into the given relation $\displaystyle\frac{d}{dt} \left( \frac{\partial \vec{r}_i}{\partial q_j} \right) = \frac{\partial \vec{v}_i}{\partial q_j}$, we obtain:
+    \begin{align}
+        \frac{d}{dt} \left( \frac{\partial \vec{r}_i}{\partial q_j} \right) &=\sum_j\frac{\partial}{\partial q_j}\left(\sum_k^n \frac{\partial \vec{r}_i}{\partial q_k}\dot{q}_k+\frac{\partial \vec{r}_i}{\partial t}\right)\notag\\
+        &=\sum_{j,k}\frac{\partial^2\vec{r}_i}{\partial q_j\partial q_k}\dot{q}_k+\frac{\partial^2\vec{r}_i}{\partial q_j\partial t}
+    \end{align}
+    We get another important relation from the above equation:
+    \begin{align}
+        \frac{\partial\vec{v}_i}{\partial\dot{q}_k}=\frac{\partial\vec{r}_i}{\partial q_k}.
+    \end{align}
+    Consider the following term and expand it:
+    \begin{align}
+        \sum_i \dot{\vec{p}}_i\cdot\delta\vec{r}_i&=\sum_im_i \ddot{\vec{r}}_i\cdot\delta\vec{r}_i\notag\\
+        &=\sum_im_i\left(\sum_k \ddot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_k}\right)\delta q_k\label{momen-hook-step}
+    \end{align}
+    Now manipulate the term within the first bracket as follows:
+    \begin{align}
+        \sum_{i,k}m_i \ddot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_k}&=\sum_{i,k}\left(\frac{d}{dt}(m_i\dot{\vec{r}}_i)\cdot\frac{\partial\dot{\vec{r}}_i}{\partial q_k}\right)+\sum_{i,k}\left[m_i\dot{\vec{r}}\cdot\frac{d}{dt}\left(\frac{\partial \vec{r}_i}{\partial q_k}\right)\right]-\sum_{i,k}\left[m_i\vec{r}_i\cdot\frac{d}{dt}\left(\frac{\partial \vec{r}_i}{\partial q_k}\right)\right]\notag\\
+        &=\sum_{i,k}\left[\frac{d}{dt}\left(m_i\dot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_k}\right)-m_i\dot{\vec{r}}_i
+        \cdot\frac{d}{dt}\left(\frac{\partial\vec{r}_i}{\partial q_k}\right)\right]\notag\\
+        &=\sum_{i,k}\left[\frac{d}{dt}\left(m_i\vec{v}_i\cdot\frac{\partial\vec{v}_i}{\partial\dot{q}_k}\right)-\left(m_i\vec{v}_i\cdot\frac{\partial\vec{v}_i}{\partial q_k}\right)\right]\notag\\
+        &=\sum_{i,k}\frac{d}{dt}\left[\frac{\partial }{\partial\dot{q}_k}\left(\frac{1}{2}m_iv_i^2\right)\right]-\sum_{i,k}\frac{\partial}{\partial{q}_k}\left(\frac{1}{2}m_iv_i^2\right)\notag\\[2pt]
+        &=\sum_k\left[\frac{d}{dt}\left(\frac{\partial T}{\partial\dot{q}_k}\right)-\frac{\partial T}{\partial{q}_k}\right];
+    \end{align}
+    where $\displaystyle T = \frac{1}{2} \sum_i m_i v_i^2$ is the kinetic energy of the system.\\
+    Plugging this back into (\ref{momen-hook-step}), we obtain the following:
+    \begin{align}
+            \sum_i \dot{\vec{p}}_i\cdot\delta\vec{r}_i&=\sum_k\left[\frac{d}{dt}\left(\frac{\partial T}{\partial\dot{q}_k}\right)-\frac{\partial T}{\partial{q}_k}\right]\delta q_k.\label{euler-lagrange-kinetic-only}
+    \end{align}\bigskip
+    %  Differentiating eq.(\ref{euclid-vel-to-genr-vel}) once with respect to time, we can obtain the Euclidean components of the acceleration:
+    % \begin{align}
+    %     \ddot{\vec{r}}_i&=\sum_k^n\frac{d}{dt}\left(\frac{\partial \vec{r}_i}{\partial q_k}\right)\dot{q}_k+\frac{\partial\vec{r}_i}{\partial q_k}\ddot{q}_k\notag\\
+    %     &=\sum_{j,k}^n\frac{d}{dt}\left(\frac{\partial^2\vec{r}_i}{\partial q_j\partial q_k}\dot{q}_k+\frac{\partial^2\vec{r}_i}{\partial q_j\partial t}\right)\dot{q}_k+\frac{\partial\vec{r}_i}{\partial q_k}\ddot{q}_k\label{acceleration-genr-coord}
+    % \end{align}
+    % Substitute eqs.(\ref{acceleration-genr-coord}) and (\ref{virtual-disp}) into (\ref{momen-hook-step}):
+    % \begin{align}
+    %     \sum_i \dot{\vec{p}}_i\cdot\delta\vec{r}_i&=\sum_km_k\left[\frac{d}{dt}\left(\frac{\partial \vec{r}_i}{\partial q_k}\dot{q}_k\right)+\frac{\partial\vec{r}_i}{\partial q_k}\ddot{q}_k\right]\cdot\left(\sum_j^n \frac{\partial \vec{r}_i}{\partial q_j}\right)\delta{q}_j
+    % \end{align}
+    %-------------------------------------------------
+    % -------------------------------------------------\bigskip
+    \hline\hline\bigskip
+    \item For $\vec{F}_i^{\text{ext}} = -\vec{\nabla}_i V$, write $Q_j$ in terms of the potential $V$:
+    \begin{align*}
+    Q_j = -\frac{\partial V}{\partial q_j}
+    \end{align*}\bigskip
+    \hline\hline\bigskip
+     \textbf{Solution}: When the non-constraint forces are derivable from a scalar potential function $V$, given so in the question, it is only logical that we write the generalized force as follows:
+     \begin{align*}
+        Q_j &= \sum_i\vec{F}_i^{\text{ext}}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\notag\\
+        &=-\vec{\nabla}_iV\cdot\frac{\partial\vec{r}_i}{\partial q_j}\\
+        &=-\frac{\partial V}{\partial q_j};
+    \end{align*}
+    This can be written because
+    \begin{align}
+        \vec{\nabla}_iV\cdot\frac{\partial\vec{r}_i}{\partial q_j}&=\sum_i\left(\frac{\partial V}{\partial\vec{r}_i}\right)\cdot\left(\frac{\partial\vec{r}_i}{\partial q_j}\right)\notag\\
+        &=\sum_i\left(\frac{\partial V}{\partial\vec{r}_1}\frac{\partial\vec{r}_1}{\partial q_1}+\frac{\partial V}{\partial\vec{r}_2}\frac{\partial\vec{r}_2}{\partial q_2}+\ldots\,\ldots+\frac{\partial V}{\partial\vec{r}_n}\frac{\partial\vec{r}_n}{\partial q_n}\right)\notag\\
+        &=\frac{\partial V}{\partial q_k}
+    \end{align}\bigskip
+    %-------------------------------------------------
+    %-------------------------------------------------\bigskip
+    \hline\hline\bigskip
+    \item Show that this leads to the Euler-Lagrange equation
+    \begin{align*}
+        \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j} = 0
+    \end{align*}
+    where $L = T - V$ is the Lagrangian of the system.\\\bigskip
+    \hline\hline\bigskip
+    \textbf{Solution}: Recall the D'Alembert's principle.
+    \begin{align}
+        \sum_i\left(\vec{F}_i^\text{(ext)}-\dot{\vec{p}}\right)\cdot\delta\vec{r}_i&=0\notag\\
+        \sum_i\vec{F}_i^\text{(ext)}\cdot\delta\vec{r}_i-\sum_i \dot{\vec{p}}_i\cdot\delta\vec{r}_i&=0;
+    \end{align}
+    where $\vec{F}_i^\text{(ext)}$ is the applied forces, $\vec{p}_i$ is the momentum, and $\delta\vec{r}_i$ is the infinitesimal virtual displacements.\\
+    Merging eqs. (\ref{general-force}) and (\ref{euler-lagrange-kinetic-only}), we obtain the following:
+    \begin{align}
+        \sum_i\left[\frac{d}{dt}\left(\frac{\partial T}{\partial\dot{q}_k}\right)-\frac{\partial T}{\partial{q}_k}-Q_k\right]\delta q_k&=0\notag\\
+        \Rightarrow\sum_i\left[\frac{d}{dt}\left(\frac{\partial T}{\partial\dot{q}_k}\right)-\frac{\partial T}{\partial{q}_k}-\frac{\partial V}{\partial q_k}\right]\delta q_k&=0.
+    \end{align}
+    $q_k$s, being generalized coordinates, are independent of $\delta q_k$s. Therefore, the above equation can only be valid if the individual coefficients vanish for all $q_k$s. Also, $V$ is independent of the generalized velocities. With all those considerations, we have:
+    \begin{align}
+        \frac{d}{dt}\left(\frac{\partial T}{\partial\dot{q}_k}\right)-\frac{\partial T}{\partial{q}_k}-\frac{\partial V}{\partial q_k}&=0;~~\text{for }k=1,\ldots,n.\notag\\
+        \Rightarrow\frac{d}{dt}\left[\frac{\partial\left(T-V\right)}{\partial\dot{q}_k}\right]-\frac{\partial (T-V)}{\partial{q}_k}&=0;~~\text{since }\frac{\partial V}{\partial\dot{q}_k}=0.
+    \end{align}
+    Defining the term $T-V$ as a new function, called the \textit{Lagrangian} of the system, we finally end up at the \textit{Euler-Lagrange} equation.
+    \begin{align}
+        \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j} = 0;
+    \end{align}
+    where $L=T-V$ is a function of $q,\dot{q},$ and $t$.
+\end{enumerate}

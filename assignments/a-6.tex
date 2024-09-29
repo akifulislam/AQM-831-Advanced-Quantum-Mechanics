@@ -1,0 +1,259 @@
+\allowdisplaybreaks
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	\Large\scshape\textbf{AQM 831 --- Advanced Quantum Mechanics-1}
+\end{center}
+{\textbf{Name:}\ \textsc{Akiful Islam Zawad} \hspace{\hfill} \textbf{Due Date:} August 30 2024\\[5pt]
+{ \textbf{Track Follower:}} \ 2 \hspace{\hfill} \textbf{Week Number:} 6 \\
+	\hrule}
+ %----------------------------
+\paragraph*{Problem Set 6} %\hfill \newline
+\\
+\begin{enumerate}[label={(\arabic*)}]
+    \item Show that the eigenvalues of the Sturm-Liouville differential operator are always real.
+    \bigskip\bigskip\hline\hline\bigskip
+    Consider the Sturm-Liouville differential equation:
+    \begin{align}
+        \frac{d}{dx} \left( p(x) \frac{dy}{dx} \right) + \left[ q(x) + l w(x) \right] y = 0, \label{eq:sturm-liouville-def}
+    \end{align}
+    where: $ y(x) $ is the eigenfunction, $ l $ is the eigenvalue, $ p(x) $, $ q(x) $, and $ w(x) $ are given real-valued functions on the interval $ [a, b] $, $ p(x) > 0 $ and $ w(x) > 0 $ on $ [a, b] $.
+    
+    Multiply both sides of (\ref{eq:sturm-liouville-def}) by the complex conjugate $ y^*(x) $ of the eigenfunction $ y(x) $ and integrate over the Interval $[a, b]$:
+    \begin{align}
+        \bigints_a^b y^*(x) \frac{d}{dx} \left( p(x) \frac{dy}{dx} \right) dx + \bigints_a^b y^*(x) \left[ q(x) + l w(x) \right] y(x) dx = 0. \label{eq:break-eq-1}
+    \end{align}
+    For the first term in (\ref{eq:break-eq-1}), apply integration by parts. We make the following adjustments:
+    \begin{align*}
+        u &= y^*(x), \\
+        du &= \frac{dy^*}{dx} dx, \\
+        v &= p(x) \frac{dy}{dx}. \\
+        dv &= \frac{d}{dx} \left( p(x) \frac{dy}{dx} \right) dx
+    \end{align*}
+    Integration by parts gives:
+    \begin{align}
+        \bigints_a^b y^*(x) \frac{d}{dx} \left( p(x) \frac{dy}{dx} \right) dx &= \left[ y^*(x) p(x) \frac{dy}{dx} \right]_a^b - \bigints_a^b p(x) \frac{dy^*}{dx} \frac{dy}{dx} dx.\label{eq:break-eq-2}
+    \end{align}
+    We assume an appropriate boundary condition such that the boundary term $\displaystyle\left[ y^*(x) p(x) \frac{dy}{dx} \right]_a^b $ vanishes. This is commonly the case for Sturm-Liouville problems where the eigenfunctions satisfy either Dirichlet or Neumann boundary conditions. Thus, (\ref{eq:break-eq-2}) simplifies to:    
+    \begin{align}
+        \bigints_a^b y^*(x) \frac{d}{dx} \left( p(x) \frac{dy}{dx} \right) dx &= - \bigints_a^b p(x) \left| \frac{dy}{dx} \right|^2 dx.\label{eq:break-eq-3}
+    \end{align}
+    Substituting (\ref{eq:break-eq-3}) into (\ref{eq:break-eq-2}) gives:
+    \begin{align}
+        -\bigints_a^b p(x) \left| \frac{dy}{dx} \right|^2 dx + \bigints_a^b \left[ q(x) + l w(x) \right] |y(x)|^2 dx &= 0\notag\\
+        \Rightarrow l \bigints_a^b w(x) |y(x)|^2 dx &= \bigints_a^b p(x) \left| \frac{dy}{dx} \right|^2 dx - \bigints_a^b q(x) |y(x)|^2 dx. \label{eq:break-eq-4}
+    \end{align}
+    Note that the integral $\displaystyle\bigints_a^b p(x) \left| \frac{dy}{dx} \right|^2 dx $ is real and non-negative since $ p(x) > 0 $ and $\displaystyle\left| \frac{dy}{dx} \right|^2 $ is non-negative. The integral $\displaystyle\bigints_a^b q(x) |y(x)|^2 dx $ is real because $ q(x) $ is real and $ |y(x)|^2 $ is non-negative.
+    
+    Thus, the right-hand side of (\ref{eq:break-eq-4}) is a real number.
+
+    The left-hand side of (\ref{eq:break-eq-4}) is $ l $ multiplied by the real, positive quantity $\displaystyle\bigints_a^b w(x) |y(x)|^2 dx $, where $ w(x) > 0 $. For (\ref{eq:break-eq-4}) to hold, $ l $ must also be real.
+
+    This confirms that the eigenvalues of the Sturm-Liouville differential operator are always real.$\qquad\text{(\bf Verified)}$
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Using the method of Frobenius, solve:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\displaystyle\frac{d^2y}{dx^2}=-\omega^2y$
+        \item $\displaystyle\left(1 - x^2\right) \frac{d^2 y}{dx^2} - 2x \frac{dy}{dx} + l (l + 1) y = 0$.
+    \end{enumerate}
+    \bigskip\bigskip\hline\hline\bigskip
+    Before applying the method of Frobenius, we better first check whether it is applicable or not.
+    
+    If we have a differential equation of the form
+    \begin{align}
+        P(x)y^{\prime\prime}+Q(x)y^{\prime}+R(x)y&=0\label{eq:frobenius-preferred-diff-eqs}\\
+        \Rightarrow y^{\prime\prime}+\frac{Q(x)}{P(x)}y^{\prime}+\frac{R(x)}{P(x)}y&=0,\notag
+    \end{align}
+    and the limits 
+    \begin{align*}
+        \lim_{x\to x_0}(x-x_0)\frac{Q(x)}{P(x)}~~~\text{and}~~~\lim_{x\to x_0}(x-x_0)^2\frac{R(x)}{P(x)}
+    \end{align*}
+    both exist and are finite, then we say that $x_0$ is a \textit{regular singular point}. If so, then there exists at least one solution of the form
+    \begin{align*}
+        y=\sum_{k=0}^\infty a_kx^k.
+    \end{align*}
+    A solution of this form is called a Frobenius-type solution.
+
+    The method of Frobenius demands:
+    \begin{enumerate}[label={(\roman*)}]
+        \item If the indicial equation has two real roots $r_1$ and $r_2$ such that $r_1-r_2$ is not an integer, then we have two linearly independent Frobenius-type solutions. Using the first root, we plug in
+        \begin{align}
+            y_1=x^{r_1}\sum_{k=0}^\infty a_kx^k,\label{eq:first-frebonius-type-1}
+        \end{align}
+        and we solve for all $a_k$ to obtain the first solution. Then, using the second root, we plug in
+        \begin{align}
+            y_2=x^{r_2}\sum_{k=0}^\infty b_kx^k,\label{eq:second-frebonius-type-1}
+        \end{align}
+        and solve for all $b_k$ to obtain the second solution.
+        \item If the indicial equation has a doubled root $r$, then there we find one solution
+        \begin{align}
+            y_1=x^{r}\sum_{k=0}^\infty a_kx^k,\label{eq:first-frebonius-t2}
+        \end{align}
+        and then we obtain a new solution by plugging
+        \begin{align}
+            y_2=x^{r}\sum_{k=0}^\infty b_kx^k+(\ln x)y_1,\label{eq:second-frebonius-type-2}
+        \end{align}
+        \item if the indicial equation has two real roots such that $r_1-r_2$ is an integer, similar to our case, then one solution is
+        \begin{align}
+            y_1=x^{r_1}\sum_{k=0}^\infty a_kx^k,\label{eq:first-frebonius-type-3}
+        \end{align}
+        and the second linearly independent solution is of the form
+        \begin{align}
+            y_2=x^{r_2}\sum_{k=0}^\infty b_kx^k + C(\ln{x})y_1,\label{eq:second-frebonius-type-3}
+        \end{align}
+        where we plug $y_2$ into (\ref{eq:frobenius-preferred-diff-eqs}) and solve for the constants $b$ and $C$.
+        \item Finally, if the indicial equation has complex roots, then solving for $a_k$ in the solution
+        \begin{align}
+            y=x^{r_1}\sum_{k=0}^\infty a_kx^k,\label{eq:first-frebonius-type-4}
+        \end{align}
+        results in a complex-valued function\textemdash all the $a_k$ are complex numbers. We obtain our two linearly independent solutions by taking the real and imaginary parts of $y$.
+    \end{enumerate}
+    \bigskip\bigskip\hline\hline\bigskip
+    Now, we move on to our questions.
+    \begin{enumerate}[label={(\alph*)}]
+        \item Given is the following differential equation:
+    \begin{align}
+        \frac{d^2y}{dx^2}=-\omega^2y\label{eq:sho-original-def}
+    \end{align}
+    Check
+    \begin{align}
+        \lim_{x\to\pm1}\left(x-x_0\right)\frac{Q(x)}{P(x)} &= \lim_{x\to0}\left(x-0\right)\left\{\frac{\omega^2}{1}\right\}=0 \text{ (Finite)}, \\
+        \lim_{x\to0}\left(x-x_0\right)^2\frac{R(x)}{P(x)} &= \lim_{x\to0}\left(x-0\right)^2\left\{\frac{0}{1}\right\}=0 \text{ (Finite)}
+    \end{align}
+    There are no singularity points for this equation because $P(x)=1$ is always non-zero. Frobenius' method can be applied. We seek a Frobenius-type solution of the form:
+    \begin{align}
+        y = \sum_{k=0}^{\infty} a_k x^{k+r} \label{eq:expected-frebonius-solution}
+    \end{align}
+    The first derivative of (\ref{eq:expected-frebonius-solution}) is
+    \begin{align}
+        y^{\prime} = \sum_{k=0}^{\infty} a_k (k+r) x^{k+r-1}.\label{eq:first-derivative-sho}
+    \end{align}
+    The second derivative of (\ref{eq:expected-frebonius-solution}) is
+    \begin{align}
+        y^{\prime\prime} = \sum_{k=0}^{\infty} a_k (k+r) (k+r-1) x^{k+r-2}.\label{eq:second-derivative-sho}
+    \end{align}
+    We plug (\ref{eq:first-derivative-sho}) and (\ref{eq:second-derivative-sho}) into (\ref{eq:sho-original-def}) to obtain:
+    \begin{align}
+        \sum_{k=0}^{\infty} a_k (k+r) (k+r-1) x^{k+r-2} + \omega^2 \sum_{k=0}^{\infty} a_k x^{k+r} &= 0
+    \end{align}
+    We take out the first term in the summation:
+    \begin{align}
+        a_0 r(r-1) x^{r-2} + \sum_{k=1}^\infty a_k (k+r)(k+r-1) x^{k+r-2} + \omega^2 \sum_{k=0}^{\infty} a_k x^{k+r}=0.
+    \end{align}
+    We do an index shift $m = k-2$, where $m$ is a dummy index. Reverting back the index to $k+2$ for $k$ in the \nth{1} summation to get:
+    \begin{align}
+        a_0 r(r-1) x^{r-2} + \sum_{k=2}^\infty a_{k+2} (k+r+2)(k+r+1) x^{k+r} + \omega^2 \sum_{k=0}^{\infty} a_k x^{k+r}&=0.\notag\\
+        a_0 r(r-1) x^{r-2} + \left[\sum_{k=2}^\infty a_{k+2} (k+r+2)(k+r+1) + \omega^2 \sum_{k=0}^{\infty} a_k\right]x^{k+r}&=0
+    \end{align}
+    Equating the coefficient of all powers of $x$ to zero, we obtain:
+    \begin{align}
+        a_0 \bigg[ r(r-1) \bigg] = 0, 
+    \end{align}
+    This is called the \textit{indicial equation} that determines the values of the index $r$. This equation gives the roots $r = 0$ and $r = 1$.
+    
+    The other terms take the following form:
+    \begin{align}
+        a_{k+2} &= \frac{-\omega^2}{(k+r+2)(k+r+1)}a_k.\label{eq:first-frebonius-type}
+    \end{align}
+    \section*{Case \#1: $r = 0$:}
+    $a_0$ and $a_1$ are arbitrary constants.
+    \begin{align}
+        a_{k+2} = \frac{-\omega^2}{(k+2)(k+1)} a_k \quad \text{for} \quad k \geq 0.
+    \end{align}
+    We iterate through $k$ to find a pattern of this series:
+    We iterate through $k$ to find a pattern of this series:
+    \begin{align*}
+        k=0\Longrightarrow a_2 &= -\frac{\omega^2}{2\cdot1}a_0\notag\\
+        k=1\Longrightarrow a_3 &= -\frac{\omega^2}{3\cdot2}a_1\notag\\
+        k=2\Longrightarrow a_4 &= \frac{\omega^2}{4\cdot3}a_2=\frac{\omega^4}{4\cdot3\cdot2\cdot1}a_0\notag\\
+        k=3\Longrightarrow a_5 &= -\frac{\omega^2}{5\cdot4}a_3=\frac{\omega^4}{5\cdot4\cdot3\cdot2\cdot1}a_1\notag\\
+        k=4\Longrightarrow a_6 &= -\frac{\omega^2}{6\cdot5}a_4=-\frac{\omega^6}{6\cdot5\cdot4\cdot3\cdot2\cdot1}a_0\notag\\
+        k=5\Longrightarrow a_7 &= -\frac{\omega^6}{7\cdot6}a_5=-\frac{\omega^6}{7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1}a_1\notag\\
+    \end{align*}
+    The general solution is
+    \begin{align}
+        y &= a_0\left(1 - \frac{\omega^2}{2!}x^2 + \frac{\omega^4}{4!}x^4 - \frac{\omega^6}{6!}x^6 + \ldots\right) + a_1\left(1 - \frac{\omega^2}{3!}3^2 + \frac{\omega^4}{5!}x^5 - \frac{\omega^6}{7!}x^7 + \ldots\right)\notag\\
+        &=a_0\left((-1)^n \frac{\omega^{2n}}{(2n)!}\right)+a_1\left((-1)^n \frac{\omega^{2(n+1)}}{(2n+1)!}\right)\notag\\
+        &=a_0 \cos(\omega x) + a_1 \sin(\omega x).\label{eq:final-general-solution-sho-first-type}
+    \end{align}
+    These are the well-known solutions for simple harmonic motion. This is equivalent to (\ref{eq:first-frebonius-type-3}).
+    \section*{Case \#2: $r = 1$:}
+    This gives a solution that depends on $y_1$. Hence, the general solution is the same (\ref{eq:final-general-solution-sho-first-type}) as mentioned above.
+    \bigskip\bigskip\hline\hline\bigskip
+    \item Given is the following differential equation:
+    \begin{align}
+        \left(1 - x^2\right) \frac{d^2 y}{dx^2} - 2x \frac{dy}{dx} + l (l + 1) y = 0\label{eq:legendre-original-def}
+    \end{align}
+    where $l$ is a real constant, 
+    
+    Check
+    \begin{align}
+        \lim_{x\to\pm1}\left(x-x_0\right)\frac{Q(x)}{P(x)} &= \lim_{x\to\pm1}\left(x\pm1\right)\left\{-\frac{2x}{1-x^2}\right\}=\pm1 \text{ (Finite)}, \\
+        \lim_{x\to\pm1}\left(x-x_0\right)^2\frac{R(x)}{P(x)} &= \lim_{x\to\pm1}\left(x\pm1\right)^2\left\{\frac{l(l + 1)}{1-x^2}\right\}=0 \text{ (Finite)}
+    \end{align}
+    The point $x_0 = \pm 1$ represents a regular singular point, and Frobenius' method can be applied. We seek a Frobenius-type solution of the form:
+    \begin{align}
+        y = \sum_{k=0}^{\infty} a_k x^{k+r}
+    \end{align}
+    The first derivative of (\ref{eq:legendre-original-def}) is
+    \begin{align}
+        y^{\prime} = \sum_{k=0}^{\infty} a_k (k+r) x^{k+r-1}.\label{eq:first-derivative}
+    \end{align}
+    The second derivative of (\ref{eq:legendre-original-def}) is
+    \begin{align}
+        y^{\prime\prime} = \sum_{k=0}^{\infty} a_k (k+r) (k+r-1) x^{k+r-2}.\label{eq:second-derivative}
+    \end{align}
+    We plug (\ref{eq:first-derivative}) and (\ref{eq:second-derivative}) into (\ref{eq:legendre-original-def}) to obtain:
+    \begin{align}
+        \sum_{k=0}^{\infty} \bigg[a_k(k+r)(k+r-1) x^{k+r-2}\left(1-x^2\right) - 2x(k+r) a_k x^{k+r-1} + l(l + 1) a_k x^{k+r} \bigg] &= 0\notag\\
+        \sum_{k=0}^{\infty} \bigg[a_k (k+r)(k+r-1) x^{k+r-2} - a_k (k+r)(k+r-1) x^{k+r} - 2 a_k (k+r) x^{k+r-1} + l(l + 1) a_k x^{k+r} \bigg] &= 0.
+    \end{align}
+    We take out the first two terms in the summation:
+    \begin{align}
+        a_0 r(r-1) x^{r-2} &+ a_1 r(r+1) x^{r-1} 
+        + \sum_{k=2}^\infty a_k (k+r)(k+r-1) x^{k+r-2} \notag \\
+        &\hspace{10pt}- \sum_{k=0}^{\infty} \left[ a_k (k+r)(k+r-1) + 2a_k(k+r) - l(l + 1) a_k \right] x^{k+r} = 0.
+    \end{align}
+    We do an index shift $m = k-2$, where $m$ is a dummy index. Reverting back the index to $k+2$ for $k$ in the \nth{1} summation to get:
+    \begin{align}
+        &a_0 r (r-1) x^{r-2} + a_1 r (r+1) x^{r-1} + \sum_{k=0}^\infty \left[ a_{k+2} (k+r+2) (k+r+1) x^{k+r} \right. \notag\\
+        &\hspace{10pt}\left. - a_k (k+r) (k+r-1) - 2 a_k (k+r) - l(l+1) a_k \right] x^{k+r} = 0.
+    \end{align}
+    Equating the coefficient of all powers of $x$ to zero, we obtain:
+    \begin{align}
+        a_0 \bigg[ r(r-1) \bigg] = 0, 
+    \end{align}
+    This is called the \textit{indicial equation} that determines the values of the index $r$. This equation gives the roots $r = 0$ and $r = 1$.
+    
+    The other terms take the following form:
+    \begin{align}
+        a_{1} \bigg[ r(r+1) \bigg] &= 0,\\
+        a_{k+2} &= \frac{(k+r)(k+r-1)+2(k+r)-l(l+1)}{(k+r+2)(k+r+1)}a_k.\label{eq:first-frebonius-type}
+    \end{align}
+    \section*{Case \#1: $r = 0$:}
+    $a_0$ and $a_1$ are arbitrary constants.
+    \begin{align}
+        a_{k+2} = \frac{k(k-1)+2k-l(l+1)}{(k+2)(k+1)} a_k \quad \text{for} \quad k \geq 0.
+    \end{align}
+    We iterate through $k$ to find a pattern of this series:
+    \begin{align*}
+        k=0\Longrightarrow a_2 &= -\frac{l (l + 1)}{2} a_0, \nonumber \\
+        k=1\Longrightarrow a_3 &= \frac{2 - l(l + 1)}{3\cdot2} a_1 = -\frac{(l-1)(l+2)}{3!}a_1, \nonumber \\
+        k=2\Longrightarrow a_4 &= \frac{2+4-l(l + 1)}{4\cdot3} a_2 = \frac{(l-2)(l+3)(l + 1)}{4!}a_0, \nonumber \\
+        k=3\Longrightarrow a_5 &= \frac{6+6-l(l + 1)}{5\cdot4} a_3 = \frac{(l-3)(l+4)(l-1)(l+2)}{5!}a_1. \nonumber \\
+        k=4\Longrightarrow a_6 &= \frac{12 + 8 - l(l+1)}{6\cdot5} a_4 = -\frac{(l-4)(l+5)(l-4)(l+5)(l + 1)}{6!} a_0. \nonumber \\
+        k=5\Longrightarrow a_7 &= \frac{12 + 8 - l(l+1)}{6\cdot5} a_5 = -\frac{(l-5)(l+6)(l-3)(l+4)(l-1)(l+2)}{7!} a_1. \nonumber \\
+        k=6\Longrightarrow a_8 &= \frac{12 + 8 - l(l+1)}{6\cdot5} a_6 = \frac{(l-6)(l+7)(l-4)(l+5)(l-4)(l+5)(l + 1)}{8!} a_0.
+    \end{align*}
+    Thus, the general solution is:
+    \begin{align}
+        y &= a_0 \left[ 1 - \frac{l (l + 1)}{2!}x^2 + \frac{(l-2)(l+3)(l + 1)}{4!}x^4 - \frac{(l-4)(l+5)(l-4)(l+5)(l + 1)}{6!}x^6+\ldots \right] \notag \\
+        &\hspace{10pt}+ a_1 \left[ x - \frac{(l-1)(l+2)}{3!}x^3 + \frac{(l-3)(l+4)(l-1)(l+2)}{5!}x^5\right.\notag\\
+        \left.&\hspace{60pt}-\frac{(l-5)(l+6)(l-3)(l+4)(l-1)(l+2)}{7!}x^7+\ldots \right].\notag\\
+        y&=a_0\left[\frac{(-1)^n \cdot P_{2n}(l)}{(2n)!}\right]+a_1\left[\frac{(-1)^n \cdot P_{2n+1}(l)}{(2n+1)!}\right]\label{eq:final-general-solution-first-type}
+    \end{align}
+    These two independent series solutions are called Legendre functions. This is equivalent to (\ref{eq:first-frebonius-type}).
+    \section*{Case \#2: $r = 1$:}
+    This gives a solution that depends on $y_1$. Hence, the general solution is the same (\ref{eq:final-general-solution-first-type}) as mentioned above.
+\end{enumerate}
+\end{enumerate}
